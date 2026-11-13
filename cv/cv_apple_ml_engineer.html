@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Joshua Nancey - Machine Learning Engineer Resume</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 10mm 12mm 8mm 12mm;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #1d1d1f;
+      background: #ffffff;
+      line-height: 1.32;
+      font-size: 9.2pt;
+      -webkit-font-smoothing: antialiased;
+    }
+    a {
+      color: #0066cc;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Header */
+    header {
+      text-align: center;
+      margin-bottom: 8px;
+      padding-bottom: 6px;
+      border-bottom: 1.5px solid #004080;
+    }
+    h1 {
+      font-size: 20pt;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: #1d1d1f;
+      margin-bottom: 2px;
+      text-transform: uppercase;
+    }
+    .headline {
+      font-size: 10.5pt;
+      font-weight: 600;
+      color: #004080;
+      margin-bottom: 4px;
+    }
+    .contact-bar {
+      font-size: 8.4pt;
+      color: #555555;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .contact-bar span {
+      display: inline-flex;
+      align-items: center;
+    }
+
+    /* Section Styling */
+    section {
+      margin-bottom: 7px;
+    }
+    .section-title {
+      font-size: 9.8pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: #004080;
+      border-bottom: 1px solid #d2d2d7;
+      padding-bottom: 2px;
+      margin-bottom: 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    /* Skills Grid */
+    .skills-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 8.6pt;
+    }
+    .skills-table td {
+      padding: 1.5px 0;
+      vertical-align: top;
+    }
+    .skills-label {
+      width: 125px;
+      font-weight: 700;
+      color: #1d1d1f;
+    }
+    .skills-val {
+      color: #333333;
+    }
+
+    /* Experience & Projects */
+    .item {
+      margin-bottom: 5px;
+    }
+    .item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 1.5px;
+    }
+    .item-title {
+      font-weight: 700;
+      font-size: 9.3pt;
+      color: #1d1d1f;
+    }
+    .item-company {
+      font-weight: 600;
+      color: #004080;
+    }
+    .item-date, .item-loc {
+      font-size: 8.2pt;
+      color: #666666;
+      font-style: italic;
+    }
+
+    ul.bullets {
+      list-style-type: disc;
+      padding-left: 14px;
+      margin-top: 1px;
+    }
+    ul.bullets li {
+      margin-bottom: 2px;
+      color: #2c2c2e;
+      text-align: justify;
+    }
+    ul.bullets li strong {
+      color: #111111;
+    }
+
+    .education-item {
+      display: flex;
+      justify-content: space-between;
+      font-size: 8.8pt;
+      margin-bottom: 2px;
+    }
+    .edu-bullets {
+      font-size: 8.3pt;
+      color: #444444;
+      padding-left: 14px;
+      margin-top: 1px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <h1>Joshua Nancey</h1>
+    <div class="headline">Machine Learning Engineer — LLM Systems, Evaluation & Model Reliability</div>
+    <div class="contact-bar">
+      <span>Paris, France</span>
+      <span>•</span>
+      <span>+33 7 49 15 69 60</span>
+      <span>•</span>
+      <span><a href="mailto:joshuanancey@gmail.com">joshuanancey@gmail.com</a></span>
+      <span>•</span>
+      <span><a href="https://www.linkedin.com/in/joshua-nancey-3218171a2">linkedin.com/in/joshua-nancey-3218171a2</a></span>
+      <span>•</span>
+      <span><a href="https://github.com/joshdeutc">github.com/joshdeutc</a></span>
+      <span>•</span>
+      <span><a href="https://joshdeutc.github.io">joshdeutc.github.io</a></span>
+    </div>
+  </header>
+
+  <!-- TECHNICAL EXPERTISE -->
+  <section>
+    <div class="section-title">Technical Expertise</div>
+    <table class="skills-table">
+      <tr>
+        <td class="skills-label">LLM & Evaluation:</td>
+        <td class="skills-val">Systematic LLM Evaluation, Automated Graders, Adversarial Testing, Rubric Design, Hallucination Auditing, Structured Outputs (JSON Schema/Pydantic), Cross-Lingual NLP, BPE Tokenization Analysis.</td>
+      </tr>
+      <tr>
+        <td class="skills-label">Machine Learning:</td>
+        <td class="skills-val">PyTorch, Hugging Face, Unsloth, Transformers, Computer Vision (ResNet, Saliency Attention, Object Detection), Statistical Risk Control (Guaranteed Risk Framework, Selective Classification, Uncertainty Estimation).</td>
+      </tr>
+      <tr>
+        <td class="skills-label">Systems & Tooling:</td>
+        <td class="skills-val">Open-Weights Serving (vLLM, Ollama), 4-bit Quantization (bitsandbytes, NF4), FlashAttention, Triton Kernels, Docker, Linux/Bash, Git, uv, CI/CD, Scaleway/Cloud Infrastructure, Kafka, Redis.</td>
+      </tr>
+      <tr>
+        <td class="skills-label">Languages:</td>
+        <td class="skills-val">Python (Advanced), C/C++, SQL, Swift / Kotlin (Android System Daemon & Device Owner), Bash, R.</td>
+      </tr>
+    </table>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section>
+    <div class="section-title">Professional Experience</div>
+
+    <div class="item">
+      <div class="item-header">
+        <div>
+          <span class="item-company">Epiconcept</span> — <span class="item-title">Research Engineer Intern (Machine Learning & LLM Reliability)</span>
+        </div>
+        <div class="item-date">March 2026 – Sept 2026 | Paris, France</div>
+      </div>
+      <ul class="bullets">
+        <li><strong>Cross-Lingual LLM Evaluation Framework:</strong> Architected an automated evaluation suite on 249 clinical discharge records across 6 open-weight architectures (12B to 70B) comparing English (EN), Croatian (HR), and back-translated English (EN2) to measure model robustness under language shifts and translation drift.</li>
+        <li><strong>BPE Tokenizer Asymmetry & Context Sizing:</strong> Diagnosed critical BPE tokenizer expansion (+40% tokens in Croatian vs English); engineered an exact 16,384-token context window that eliminated silent truncation artifacts, decoupling tokenizer asymmetry from true language comprehension.</li>
+        <li><strong>Adversarial Grader & Citation Verification (<code>verify.csv</code>):</strong> Designed an automated grader with a 4-tier error hierarchy (<em>hallucination</em> &gt; <em>parse_failed</em> &gt; <em>no_evidence</em> &gt; <em>wrong_class</em>). Proved a 31B model achieved deceptive 1.000 precision solely due to 55% formatting failures, and caught labeling errors in gold-standard reference datasets.</li>
+        <li><strong>Inference Optimization & Cost Reduction:</strong> Sized and loaded 24B/27B models in 4-bit NF4 on a single NVIDIA A100 (40 GB) via Unsloth and FlashAttention, delivering ~2–3s latency and completing 4,500+ long-sequence evaluations for &lt;€100 on European cloud (Scaleway).</li>
+        <li><strong>Computer Vision & Statistical Risk Control (<em>deep.piste</em>):</strong> Fine-tuned GMIC multi-instance attention classifier (ResNet-22/18) on 300+ GB high-res medical imagery (AUC = 0.889); proved marginal False Negative Rate (FNR) guarantees under selective prediction via binomial tail inversion, and authored an 8-chapter executable training capsule.</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="item-header">
+        <div>
+          <span class="item-company">Aubay — Innovation Lab</span> — <span class="item-title">AI & Data Science Intern (Automated Anomaly Detection)</span>
+        </div>
+        <div class="item-date">Sept 2024 – Feb 2025 | Boulogne-Billancourt, France</div>
+      </div>
+      <ul class="bullets">
+        <li><strong>Tabular Transformers & Embedding Pipelines:</strong> Researched and benchmarked deep tabular architectures (TabTransformer, FT-Transformer, GANDALF) combined with Isolation Forest and Deep Isolation Forest for contextual anomaly detection, achieving F1 = 0.77 (100% recall on contextual price anomalies).</li>
+        <li><strong>Production Backend & Tooling:</strong> Developed a modular Flask REST API with isolated Conda environments, Docker containers, and automated test runners, bridging experimental modeling with maintainable web software.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- KEY PROJECTS -->
+  <section>
+    <div class="section-title">Key Projects & Engineering Achievements</div>
+
+    <div class="item">
+      <div class="item-header">
+        <div><span class="item-title">Custos — Mobile System Daemon & Policy Controller</span> <span style="font-size:8pt; color:#666;">(Kotlin, Swift-adjacent, Android IPC)</span></div>
+        <div class="item-date">2026</div>
+      </div>
+      <ul class="bullets">
+        <li>Engineered an autonomous system service running at <strong>Device Owner</strong> privilege level across 4 physical devices, implementing selective app/UI restriction rules via Accessibility Node inspection and encrypted DNS-over-TLS (NextDNS DoT).</li>
+        <li>Designed an asymmetric security architecture with IPC AIDL communication, crash resilience, and automated ADB test suites.</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="item-header">
+        <div><span class="item-title">Multi-Scale Object Detection Pipeline with Hard Negative Mining</span> <span style="font-size:8pt; color:#666;">(Python, OpenCV, Scikit-Learn)</span></div>
+        <div class="item-date">2025</div>
+      </div>
+      <ul class="bullets">
+        <li>Built an object detection pipeline combining adaptive multi-scale sliding windows, HOG + LBP texture descriptors, SVM / Random Forest classifiers, and multi-round weighted <strong>Hard Negative Mining</strong> to systematically suppress false-positive rates (FPR).</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="item-header">
+        <div><span class="item-title">Neural Implicit Surfaces in 4D Space-Time (BMBI Laboratory / UTC)</span> <span style="font-size:8pt; color:#666;">(PyTorch, autograd)</span></div>
+        <div class="item-date">2025 – 2026</div>
+      </div>
+      <ul class="bullets">
+        <li>Trained DeepSDF / SIREN coordinate MLPs on 4D finite element deformable surfaces with Eikonal regularization; validated 2nd-order differential geometry preservation (Gauss-Bonnet theorem verified within 0.025% accuracy) and reduced velocity error from 18% to 4.6%.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section>
+    <div class="section-title">Education</div>
+    <div class="education-item">
+      <div><strong>University of Technology of Compiègne (UTC)</strong> — <em>Master of Engineering in Computer Science</em></div>
+      <div class="item-date">2023 – 2026 | Compiègne, France</div>
+    </div>
+    <div class="edu-bullets">
+      • <strong>Specialization:</strong> Artificial Intelligence, Computer Vision, Multi-Agent Systems, Data Mining, Software Architecture.<br>
+      • <strong>Mathematical Modeling Label (Mod'Math):</strong> Numerical Linear Algebra, Stochastic Processes, Optimization (Lagrangian, Simplex), Statistics.
+    </div>
+
+    <div class="education-item" style="margin-top: 3px;">
+      <div><strong>Lycée Raspail</strong> — <em>CPGE PTSI – PT (Intensive Classes in Mathematics, Physics & Engineering)</em></div>
+      <div class="item-date">2020 – 2023 | Paris, France</div>
+    </div>
+  </section>
+
+</body>
+</html>
