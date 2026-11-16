@@ -16,9 +16,9 @@ export function MangaNavbar() {
   const chapters = UI_COPY.nav.chapters;
 
   return (
-    <header className="sticky top-0 z-40 bg-paper border-b-[3px] border-ink shrink-0">
+    <header className="sticky top-0 z-40 unified-manga-bg border-b-[2.5px] border-ink shrink-0">
       <div className="max-w-[1440px] mx-auto px-3 sm:px-6">
-        <div className="h-14 sm:h-16 flex items-center justify-between gap-3">
+        <div className="h-12 sm:h-14 flex items-center justify-between gap-3">
           {/* Volume Title Left */}
           <Link
             href="/"

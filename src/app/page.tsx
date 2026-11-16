@@ -141,11 +141,11 @@ export default function HomePage() {
   const hasNext = Boolean(nextChapter) || (activeChapter === "experience" && experience.spreadIdx === 0);
 
   return (
-    <div className="min-h-screen flex flex-col mangaka-desk">
+    <div className="min-h-screen lg:h-dvh lg:overflow-hidden flex flex-col unified-manga-bg">
       <MangaLoader />
       <MangaNavbar />
 
-      <main className="flex-1 flex flex-col justify-center">
+      <main className="flex-1 lg:min-h-0 lg:overflow-hidden flex flex-col justify-center">
         <OpenMangaBook
           bookKey={spreadConfig.bookKey}
           direction={direction}

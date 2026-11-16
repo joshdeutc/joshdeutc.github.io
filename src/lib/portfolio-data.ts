@@ -186,7 +186,6 @@ export const PROJECTS_DATA: ProjectItem[] = [
     links: {
       github: "https://github.com/joshdeutc/custos",
       release: "https://github.com/joshdeutc/custos/releases/latest",
-      privacy: "/privacy",
       externalLabel: { en: "Google Play (Reviewing Org)", fr: "Google Play (En cours)" },
     },
   },

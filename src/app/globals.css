@@ -5,12 +5,14 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    background-color: #1c1a18;
+    background-color: #f6f3ec;
     color: #111111;
   }
 
   body {
-    background-color: #1c1a18;
+    background-color: #f6f3ec;
+    background-image: radial-gradient(rgba(17, 17, 17, 0.055) 1px, transparent 1px);
+    background-size: 16px 16px;
     color: #111111;
     overflow-x: hidden;
   }
@@ -21,30 +23,27 @@
   }
 }
 
-/* Mangaka studio cutting-mat desk background surrounding the open manga book */
-.mangaka-desk {
-  background-color: #1a1816;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    radial-gradient(rgba(214, 40, 40, 0.08) 1px, transparent 1px);
-  background-size: 40px 40px, 40px 40px, 20px 20px;
+/* Unified manga paper background for top menu, center book arena, and bottom bar */
+.unified-manga-bg {
+  background-color: #f6f3ec;
+  background-image: radial-gradient(rgba(17, 17, 17, 0.055) 1px, transparent 1px);
+  background-size: 16px 16px;
 }
 
 /* Manga paper & halftone screentones */
 .manga-page-paper {
-  background-color: #fdfbf6;
-  background-image: radial-gradient(rgba(17, 17, 17, 0.045) 0.9px, transparent 0.9px);
+  background-color: #ffffff;
+  background-image: radial-gradient(rgba(17, 17, 17, 0.04) 0.9px, transparent 0.9px);
   background-size: 14px 14px;
 }
 
 .halftone-subtle {
-  background-image: radial-gradient(rgba(17, 17, 17, 0.14) 1.15px, transparent 1.15px);
+  background-image: radial-gradient(rgba(17, 17, 17, 0.12) 1.15px, transparent 1.15px);
   background-size: 8px 8px;
 }
 
 .halftone-red {
-  background-image: radial-gradient(rgba(214, 40, 40, 0.16) 1.15px, transparent 1.15px);
+  background-image: radial-gradient(rgba(214, 40, 40, 0.14) 1.15px, transparent 1.15px);
   background-size: 9px 9px;
 }
 
@@ -53,8 +52,8 @@
     -55deg,
     transparent,
     transparent 11px,
-    rgba(17, 17, 17, 0.035) 11px,
-    rgba(17, 17, 17, 0.035) 13px
+    rgba(17, 17, 17, 0.03) 11px,
+    rgba(17, 17, 17, 0.03) 13px
   );
 }
 
@@ -122,8 +121,8 @@
 .book-gutter-left {
   background: linear-gradient(
     to left,
-    rgba(17, 17, 17, 0.22) 0%,
-    rgba(17, 17, 17, 0.08) 14px,
+    rgba(17, 17, 17, 0.2) 0%,
+    rgba(17, 17, 17, 0.07) 14px,
     rgba(17, 17, 17, 0.015) 36px,
     transparent 64px
   );
@@ -132,21 +131,21 @@
 .book-gutter-right {
   background: linear-gradient(
     to right,
-    rgba(17, 17, 17, 0.22) 0%,
-    rgba(17, 17, 17, 0.08) 14px,
+    rgba(17, 17, 17, 0.2) 0%,
+    rgba(17, 17, 17, 0.07) 14px,
     rgba(17, 17, 17, 0.015) 36px,
     transparent 64px
   );
 }
 
-/* Subtle paper thickness stack effect on edges of open book */
+/* Paper thickness stack effect on edges of open book */
 .book-edge-left {
   box-shadow:
     -3px 0 0 #eae5d9,
     -4px 0 0 #111111,
-    -7px 0 0 #e0d9ca,
+    -7px 0 0 #dfd8c8,
     -8px 0 0 #111111,
-    -11px 0 0 #d5cebd,
+    -11px 0 0 #d2cbb8,
     -12px 0 0 #111111;
 }
 
@@ -154,24 +153,19 @@
   box-shadow:
     3px 0 0 #eae5d9,
     4px 0 0 #111111,
-    7px 0 0 #e0d9ca,
+    7px 0 0 #dfd8c8,
     8px 0 0 #111111,
-    11px 0 0 #d5cebd,
+    11px 0 0 #d2cbb8,
     12px 0 0 #111111;
 }
 
-/* Custom sleek scrollbar inside manga pages on smaller desktop viewports */
+/* Hide scrollbars inside manga pages while preserving wheel accessibility on tiny viewports */
+.manga-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
 .manga-scroll::-webkit-scrollbar {
-  width: 5px;
-}
-.manga-scroll::-webkit-scrollbar-track {
-  background: transparent;
-}
-.manga-scroll::-webkit-scrollbar-thumb {
-  background: rgba(17, 17, 17, 0.25);
-}
-.manga-scroll::-webkit-scrollbar-thumb:hover {
-  background: #d62828;
+  display: none;
 }
 
 /* Washi masking tape look for physical photo pinned on manga board */
