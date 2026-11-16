@@ -4,10 +4,9 @@ import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import { ShieldCheck, ExternalLink, BookOpen } from "lucide-react";
+import { BookOpen } from "lucide-react";
 import { ChapterId, useManga } from "./MangaContext";
 import { pick, UI_COPY } from "@/lib/i18n";
-import { PROFILE_LINKS } from "@/lib/portfolio-data";
 
 export function MangaNavbar() {
   const { lang, toggleLang, activeChapter, navigateChapter } = useManga();
@@ -15,14 +14,12 @@ export function MangaNavbar() {
   const isHome = pathname === "/";
 
   const chapters = UI_COPY.nav.chapters;
-  const activeIndex = chapters.findIndex((c) => c.id === activeChapter);
-  const progressPct = isHome ? ((activeIndex + 1) / chapters.length) * 100 : 100;
 
   return (
-    <header className="sticky top-0 z-50 bg-washi/95 backdrop-blur-md border-b-[3px] border-ink">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="h-16 flex items-center justify-between gap-3">
-          {/* Manga Title / Cover Stamp */}
+    <header className="sticky top-0 z-40 bg-paper border-b-[3px] border-ink shrink-0">
+      <div className="max-w-[1440px] mx-auto px-3 sm:px-6">
+        <div className="h-14 sm:h-16 flex items-center justify-between gap-3">
+          {/* Volume Title Left */}
           <Link
             href="/"
             onClick={() => isHome && navigateChapter("about")}
@@ -32,20 +29,20 @@ export function MangaNavbar() {
               創
             </div>
             <div className="leading-tight">
-              <div className="font-display font-bold text-base sm:text-lg tracking-tight text-ink uppercase">
+              <div className="font-display font-black text-base sm:text-lg tracking-tight text-ink uppercase">
                 Joshua Nancey
               </div>
-              <div className="font-mono text-[10px] tracking-widest text-slateink hidden sm:block">
+              <div className="font-mono text-[10px] tracking-widest text-slateink hidden xl:block">
                 {pick(UI_COPY.nav.brandSub, lang)}
               </div>
             </div>
           </Link>
 
-          {/* 4 Manga Chapter Tabs */}
+          {/* Top Menu: 5 Chapter Tabs (ABOUT, PROJECTS, EXPERIENCE, STACK, CONTACT) */}
           {isHome ? (
             <nav
               aria-label="Manga Chapters"
-              className="hidden md:flex items-center gap-1.5 bg-paper border-2 border-ink p-1 shadow-manga-sm"
+              className="hidden md:flex items-center gap-1 bg-washi border-2 border-ink p-1 shadow-manga-sm"
             >
               {chapters.map((ch) => {
                 const isActive = activeChapter === ch.id;
@@ -53,8 +50,8 @@ export function MangaNavbar() {
                   <button
                     key={ch.id}
                     onClick={() => navigateChapter(ch.id as ChapterId)}
-                    className={`relative px-3.5 py-1.5 font-mono text-xs font-bold tracking-wider transition-colors flex items-center gap-1.5 ${
-                      isActive ? "text-white" : "text-ink hover:bg-washi"
+                    className={`relative px-3 lg:px-4 py-1.5 font-mono text-xs font-bold tracking-wider transition-colors flex items-center gap-1.5 ${
+                      isActive ? "text-white" : "text-ink hover:bg-white"
                     }`}
                   >
                     {isActive && (
@@ -65,7 +62,7 @@ export function MangaNavbar() {
                       />
                     )}
                     <span className="relative z-10 text-hanko font-black">
-                      {isActive ? ch.kanji : `${ch.num}`}
+                      {isActive ? ch.kanji : ch.num}
                     </span>
                     <span className="relative z-10">{lang === "en" ? ch.en : ch.fr}</span>
                   </button>
@@ -78,51 +75,33 @@ export function MangaNavbar() {
               className="hidden md:inline-flex items-center gap-2 px-4 py-1.5 bg-ink text-white font-mono text-xs font-bold border-2 border-ink hover:bg-hanko transition-colors"
             >
               <BookOpen className="w-3.5 h-3.5" />
-              <span>{lang === "en" ? "← BACK TO PORTFOLIO" : "← RETOUR AU PORTFOLIO"}</span>
+              <span>{lang === "en" ? "← OPEN MANGA BOOK" : "← OUVRIR LE MANGA"}</span>
             </Link>
           )}
 
-          {/* Right Controls: EN|FR Switch + Malt + Privacy */}
+          {/* Language Switch EN / FR Right */}
           <div className="flex items-center gap-2 shrink-0">
             <button
               onClick={toggleLang}
               aria-label="Toggle language"
-              className="px-2.5 py-1.5 bg-paper border-2 border-ink font-mono text-xs font-bold shadow-manga-sm hover:bg-ink hover:text-white transition-colors flex items-center gap-1"
+              className="px-3 py-1.5 bg-washi border-2 border-ink font-mono text-xs font-bold shadow-manga-sm hover:bg-ink hover:text-white transition-colors flex items-center gap-1.5"
             >
-              <span className={lang === "en" ? "text-hanko font-black" : "opacity-50"}>EN</span>
+              <span className={lang === "en" ? "text-hanko font-black" : "opacity-50"}>
+                EN
+              </span>
               <span className="opacity-40">/</span>
-              <span className={lang === "fr" ? "text-hanko font-black" : "opacity-50"}>FR</span>
+              <span className={lang === "fr" ? "text-hanko font-black" : "opacity-50"}>
+                FR
+              </span>
             </button>
-
-            <a
-              href={PROFILE_LINKS.malt}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 bg-hanko text-white border-2 border-ink shadow-manga-sm font-mono text-xs font-bold hover:bg-hanko-dark transition-colors"
-            >
-              <span>{pick(UI_COPY.nav.hireMalt, lang)}</span>
-              <ExternalLink className="w-3 h-3" />
-            </a>
-
-            <Link
-              href="/privacy"
-              title={pick(UI_COPY.nav.privacyLink, lang)}
-              className={`p-1.5 border-2 border-ink shadow-manga-sm transition-colors ${
-                pathname === "/privacy"
-                  ? "bg-ink text-white"
-                  : "bg-paper text-ink hover:bg-washi"
-              }`}
-            >
-              <ShieldCheck className="w-4 h-4" />
-            </Link>
           </div>
         </div>
 
-        {/* Mobile Chapter Switcher */}
+        {/* Mobile Chapter Bar (Clean horizontal strip) */}
         {isHome && (
           <nav
             aria-label="Mobile Chapters"
-            className="flex md:hidden items-center justify-between gap-1 pb-2.5 overflow-x-auto"
+            className="flex md:hidden items-center gap-1.5 pb-2.5 overflow-x-auto"
           >
             {chapters.map((ch) => {
               const isActive = activeChapter === ch.id;
@@ -130,10 +109,10 @@ export function MangaNavbar() {
                 <button
                   key={ch.id}
                   onClick={() => navigateChapter(ch.id as ChapterId)}
-                  className={`flex-1 min-w-[78px] px-2 py-1.5 font-mono text-[10px] font-bold border-2 border-ink text-center transition-colors ${
+                  className={`shrink-0 px-2.5 py-1.5 font-mono text-[10px] font-bold border-2 border-ink transition-colors ${
                     isActive
                       ? "bg-ink text-white shadow-manga-sm"
-                      : "bg-paper text-ink"
+                      : "bg-washi text-ink"
                   }`}
                 >
                   <span className={isActive ? "text-hanko" : "text-slateink"}>
@@ -145,16 +124,6 @@ export function MangaNavbar() {
             })}
           </nav>
         )}
-      </div>
-
-      {/* Volume Reading Progress Bar */}
-      <div className="h-[3px] w-full bg-ink/10">
-        <motion.div
-          className="h-full bg-hanko"
-          initial={false}
-          animate={{ width: `${progressPct}%` }}
-          transition={{ duration: 0.35, ease: "easeOut" }}
-        />
       </div>
     </header>
   );

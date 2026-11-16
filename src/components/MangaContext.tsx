@@ -3,7 +3,7 @@
 import React, { createContext, useContext, useState } from "react";
 import { Lang } from "@/lib/i18n";
 
-export type ChapterId = "about" | "projects" | "experience" | "stack";
+export type ChapterId = "about" | "projects" | "experience" | "stack" | "contact";
 
 interface MangaContextType {
   lang: Lang;
@@ -15,12 +15,18 @@ interface MangaContextType {
   navigateChapter: (nextChapter: ChapterId) => void;
 }
 
-const CHAPTER_ORDER: ChapterId[] = ["about", "projects", "experience", "stack"];
+export const CHAPTER_ORDER: ChapterId[] = [
+  "about",
+  "projects",
+  "experience",
+  "stack",
+  "contact",
+];
 
 const MangaContext = createContext<MangaContextType | undefined>(undefined);
 
 export function MangaProvider({ children }: { children: React.ReactNode }) {
-  // Always defaults to English as requested ("Le site sera uniquement en bilingue mais affichera toujours l'anglais")
+  // Always defaults to English on initial load
   const [lang, setLang] = useState<Lang>("en");
   const [activeChapter, setActiveChapter] = useState<ChapterId>("about");
   const [direction, setDirection] = useState<number>(1);
@@ -34,9 +40,6 @@ export function MangaProvider({ children }: { children: React.ReactNode }) {
     const nextIdx = CHAPTER_ORDER.indexOf(nextChapter);
     setDirection(nextIdx >= currIdx ? 1 : -1);
     setActiveChapter(nextChapter);
-    if (typeof window !== "undefined") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
   };
 
   return (

@@ -87,10 +87,10 @@ export default function PrivacyPage() {
   )}`;
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col mangaka-desk">
       <MangaNavbar />
 
-      <main className="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 py-8 sm:py-12 space-y-8">
+      <main className="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 py-8 sm:py-10 my-4 bg-paper border-[3px] border-ink shadow-manga-lg space-y-8">
         {/* Header */}
         <div className="flex items-end justify-between gap-4 border-b-[3px] border-ink pb-4">
           <div>
