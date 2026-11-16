@@ -20,7 +20,7 @@ export function useContactSpread() {
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [subject, setSubject] = useState("Freelance / AI Mission");
+  const [subject, setSubject] = useState("Freelance Mission");
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState<"idle" | "submitting" | "sent" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
@@ -218,20 +218,23 @@ export function useContactSpread() {
             onChange={(e) => setSubject(e.target.value)}
             className="w-full px-2.5 py-1.5 bg-washi border-2 border-ink text-xs focus:outline-none focus:bg-white"
           >
-            <option value="Freelance / AI Mission">
+            <option value="Freelance Mission">
               {lang === "en"
                 ? "Freelance Mission (AI / LLM / Android)"
                 : "Mission Freelance (IA / LLM / Android)"}
             </option>
             <option value="Full-Time Engineering Role">
               {lang === "en"
-                ? "Full-Time Engineering Role"
-                : "Opportunité CDI / R&D"}
+                ? "Full-Time Engineering Role (AI / ML / Systems)"
+                : "Opportunité CDI / R&D (IA / ML / Systèmes)"}
             </option>
-            <option value="Custos / GDPR Inquiry">
+            <option value="Technical / Research Collaboration">
               {lang === "en"
-                ? "Custos App / GDPR Question"
-                : "Application Custos / Question RGPD"}
+                ? "Technical Collaboration / Research Inquiry"
+                : "Collaboration Technique / Échange R&D"}
+            </option>
+            <option value="Other Inquiry">
+              {lang === "en" ? "Other Inquiry" : "Autre demande"}
             </option>
           </select>
         </div>

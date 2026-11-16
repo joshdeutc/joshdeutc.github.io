@@ -114,8 +114,7 @@ export const UI_COPY = {
     ctaPrivacy: { en: "Custos GDPR Policy (/privacy)", fr: "Politique RGPD Custos (/privacy)" },
   },
   footer: {
-    publisher: "Custos — Joshua Nancey",
+    publisher: "Joshua Nancey",
     location: { en: "Paris, France", fr: "Paris, France" },
-    privacy: { en: "Privacy (/privacy)", fr: "RGPD (/privacy)" },
   },
 } as const;
