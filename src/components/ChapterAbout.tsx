@@ -22,7 +22,7 @@ export function useAboutSpread() {
   const leftPage = (
     <div className="space-y-3">
       {/* Chapter Title Strip */}
-      <div className="flex items-start justify-between gap-2 border-b-[2.5px] border-ink pb-2.5">
+      <div className="flex items-start justify-between gap-2 border-b border-ink/15 pb-2.5">
         <div>
           <span className="inline-block px-2 py-0.5 bg-ink text-white font-mono text-[10px] font-bold tracking-widest mb-1">
             {pick(copy.badge, lang)}
@@ -41,7 +41,7 @@ export function useAboutSpread() {
 
       {/* Comic Spread Panel: Pinned Real Photo + Manga Speech Bubbles */}
       <div className="manga-panel p-3.5 speedlines-bg relative overflow-hidden">
-        <span className="absolute top-1.5 right-2.5 font-display font-black text-base text-hanko/75 rotate-3 select-none">
+        <span className="hidden sm:inline-block absolute top-1.5 right-2.5 font-display font-black text-xs text-hanko/80 rotate-3 select-none pointer-events-none">
           DON!!
         </span>
 
@@ -74,7 +74,7 @@ export function useAboutSpread() {
 
           {/* Speech Bubble Dialogue pointing from Joshua */}
           <div className="sm:col-span-7 space-y-2.5">
-            <h2 className="font-display font-bold text-sm sm:text-base text-ink leading-snug">
+            <h2 className="font-display font-bold text-sm sm:text-base text-ink leading-snug sm:pr-12">
               {pick(copy.headline, lang)}
             </h2>
 

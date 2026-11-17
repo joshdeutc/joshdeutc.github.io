@@ -34,7 +34,7 @@ export function useProjectsSpread() {
   // LEFT PAGE: Compact Manga Grid of Selectable Quests
   const leftPage = (
     <div className="space-y-3">
-      <div className="flex items-start justify-between gap-2 border-b-[2.5px] border-ink pb-2">
+      <div className="flex items-start justify-between gap-2 border-b border-ink/15 pb-2">
         <div>
           <span className="inline-block px-2 py-0.5 bg-ink text-white font-mono text-[9px] font-bold tracking-widest mb-1">
             {pick(copy.badge, lang)}
@@ -194,12 +194,18 @@ export function useProjectsSpread() {
 
             <div
               onClick={() => setZoomModal(true)}
-              className="h-[155px] sm:h-[180px] w-full bg-white border-2 border-ink flex items-center justify-center overflow-hidden cursor-pointer p-1"
+              className={`h-[165px] sm:h-[190px] w-full border border-ink/40 flex items-center justify-center overflow-hidden cursor-pointer p-1.5 ${
+                currentScreen.isPhone ? "bg-[#0B0C10]" : "bg-white"
+              }`}
             >
               <img
                 src={currentScreen.src}
                 alt={pick(currentScreen.caption, lang)}
-                className="max-h-full max-w-full object-contain"
+                className={`max-h-full max-w-full object-contain ${
+                  currentScreen.isPhone
+                    ? "rounded-lg border border-white/25 shadow-[0_8px_24px_rgba(0,0,0,0.65)]"
+                    : ""
+                }`}
               />
             </div>
 

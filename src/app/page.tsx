@@ -2,6 +2,7 @@
 
 import React, { useEffect } from "react";
 import { MangaLoader } from "@/components/MangaLoader";
+import { MangaCanvasBg } from "@/components/MangaCanvasBg";
 import { MangaNavbar } from "@/components/MangaNavbar";
 import { MangaFooter } from "@/components/MangaFooter";
 import { OpenMangaBook } from "@/components/OpenMangaBook";
@@ -141,11 +142,12 @@ export default function HomePage() {
   const hasNext = Boolean(nextChapter) || (activeChapter === "experience" && experience.spreadIdx === 0);
 
   return (
-    <div className="min-h-screen lg:h-dvh lg:overflow-hidden flex flex-col unified-manga-bg">
+    <div className="min-h-screen lg:h-dvh lg:overflow-hidden flex flex-col bg-[#0B0C10] text-white relative">
+      <MangaCanvasBg />
       <MangaLoader />
       <MangaNavbar />
 
-      <main className="flex-1 lg:min-h-0 lg:overflow-hidden flex flex-col justify-center">
+      <main className="relative z-10 flex-1 lg:min-h-0 lg:overflow-hidden flex flex-col justify-center">
         <OpenMangaBook
           bookKey={spreadConfig.bookKey}
           direction={direction}

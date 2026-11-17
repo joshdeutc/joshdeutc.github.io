@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { useManga } from "./MangaContext";
-import { HankoStamp } from "./HankoStamp";
 import { pick, UI_COPY } from "@/lib/i18n";
 import { EXPERIENCES_DATA, ExperienceItem } from "@/lib/portfolio-data";
 
@@ -16,12 +15,12 @@ function ExperienceMangaPanel({ exp }: { exp: ExperienceItem }) {
   return (
     <div className="space-y-2.5">
       {/* Header Row with Company Logo(s), Title & Period */}
-      <div className="border-b-2 border-ink pb-2 flex items-start gap-2.5">
+      <div className="border-b border-ink/20 pb-2 flex items-start gap-2.5">
         <div className="flex -space-x-2 shrink-0">
           {exp.logos.map((logoSrc, i) => (
             <div
               key={i}
-              className="w-10 h-10 rounded border-2 border-ink bg-white p-1 flex items-center justify-center shadow-manga-sm"
+              className="w-9 h-9 rounded-sm border border-ink/30 bg-white p-1 flex items-center justify-center shadow-sm"
             >
               <img
                 src={logoSrc}
@@ -41,24 +40,24 @@ function ExperienceMangaPanel({ exp }: { exp: ExperienceItem }) {
           <div className="flex flex-wrap items-center gap-1.5 font-mono text-[10px] font-bold text-ink mt-0.5">
             <span>{pick(exp.period, lang)}</span>
             <span className="text-hanko">({pick(exp.duration, lang)})</span>
-            <span className="px-1.5 py-0.5 bg-washi border border-ink text-[8px]">
+            <span className="px-1.5 py-0.5 bg-washi border border-ink/25 text-[8px]">
               {pick(exp.type, lang)}
             </span>
           </div>
         </div>
       </div>
 
-      {/* Signature Red Chronological Gauge (2022–2026) */}
-      <div className="p-2 bg-washi border-2 border-ink">
+      {/* Red Chronological Career Gauge (2022–2026) */}
+      <div className="p-2 bg-washi/80 border border-ink/20 rounded-sm">
         <div className="grid grid-cols-5 text-[9px] font-mono font-bold text-slateink mb-0.5">
           {YEARS.map((y) => (
             <span key={y}>{y}</span>
           ))}
         </div>
-        <div className="relative h-4 bg-white border border-ink/25 overflow-hidden">
+        <div className="relative h-3.5 bg-white border border-ink/20 overflow-hidden rounded-sm">
           <div className="absolute inset-0 grid grid-cols-5 pointer-events-none">
             {YEARS.map((y) => (
-              <div key={y} className="border-r border-ink/15 last:border-r-0 h-full" />
+              <div key={y} className="border-r border-ink/10 last:border-r-0 h-full" />
             ))}
           </div>
           <motion.div
@@ -70,7 +69,7 @@ function ExperienceMangaPanel({ exp }: { exp: ExperienceItem }) {
               width: `${exp.gaugeWidthPct}%`,
               transformOrigin: "left center",
             }}
-            className="absolute top-0.5 bottom-0.5 bg-hanko border border-ink"
+            className="absolute top-0.5 bottom-0.5 bg-hanko"
           />
         </div>
       </div>
@@ -146,33 +145,37 @@ export function useExperienceSpread() {
   const rightExp = spreadIdx === 0 ? EXPERIENCES_DATA[1] : EXPERIENCES_DATA[3];
 
   const spreadSwitcher = (
-    <div className="flex flex-wrap items-center justify-between gap-2 pb-2 mb-2.5 border-b-2 border-ink">
-      <div className="flex items-center gap-2">
-        <HankoStamp kanji="歴" size="sm" />
-        <div>
-          <h1 className="font-display font-black text-lg sm:text-xl uppercase text-ink leading-none">
-            {pick(copy.title, lang)}
-          </h1>
-          <p className="text-[10px] text-slateink">{pick(copy.subtitle, lang)}</p>
-        </div>
+    <div className="flex flex-wrap items-center justify-between gap-2 pb-2 mb-2.5 border-b border-ink/20">
+      <div>
+        <span className="inline-block px-2 py-0.5 bg-ink text-white font-mono text-[9px] font-bold tracking-widest mb-1">
+          {pick(copy.badge, lang)}
+        </span>
+        <h1 className="font-display font-black text-lg sm:text-xl uppercase text-ink leading-none">
+          {pick(copy.title, lang)}
+        </h1>
+        <p className="text-[10px] text-slateink mt-0.5">{pick(copy.subtitle, lang)}</p>
       </div>
 
       <div className="flex gap-1">
         <button
           onClick={() => setSpreadIdx(0)}
-          className={`px-2 py-0.5 font-mono text-[9px] font-bold border-2 border-ink transition-colors ${
-            spreadIdx === 0 ? "bg-hanko text-white" : "bg-washi text-ink hover:bg-white"
+          className={`px-2 py-0.5 font-mono text-[9px] font-bold border border-ink/40 transition-colors ${
+            spreadIdx === 0
+              ? "bg-hanko text-white border-hanko"
+              : "bg-washi text-ink hover:bg-white"
           }`}
         >
-          1/2 · 2025–2026
+          ARC 1 · 2025–2026
         </button>
         <button
           onClick={() => setSpreadIdx(1)}
-          className={`px-2 py-0.5 font-mono text-[9px] font-bold border-2 border-ink transition-colors ${
-            spreadIdx === 1 ? "bg-hanko text-white" : "bg-washi text-ink hover:bg-white"
+          className={`px-2 py-0.5 font-mono text-[9px] font-bold border border-ink/40 transition-colors ${
+            spreadIdx === 1
+              ? "bg-hanko text-white border-hanko"
+              : "bg-washi text-ink hover:bg-white"
           }`}
         >
-          2/2 · 2022–2025
+          ARC 2 · 2022–2025
         </button>
       </div>
     </div>

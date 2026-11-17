@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { BookOpen } from "lucide-react";
 import { ChapterId, useManga } from "./MangaContext";
-import { pick, UI_COPY } from "@/lib/i18n";
+import { UI_COPY } from "@/lib/i18n";
 
 export function MangaNavbar() {
   const { lang, toggleLang, activeChapter, navigateChapter } = useManga();
@@ -16,33 +16,27 @@ export function MangaNavbar() {
   const chapters = UI_COPY.nav.chapters;
 
   return (
-    <header className="sticky top-0 z-40 unified-manga-bg border-b-[2.5px] border-ink shrink-0">
-      <div className="max-w-[1440px] mx-auto px-3 sm:px-6">
-        <div className="h-12 sm:h-14 flex items-center justify-between gap-3">
-          {/* Volume Title Left */}
+    /* Transparent floating top menu directly over the unified dark canvas — ZERO black dividing line or opaque bar */
+    <header className="relative z-40 shrink-0">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-8">
+        <div className="h-12 sm:h-14 flex items-center justify-between gap-4">
+          {/* Minimal Typographic Identity Left (inspired by Aahana Surya floating nav) */}
           <Link
             href="/"
             onClick={() => isHome && navigateChapter("about")}
             className="flex items-center gap-2.5 group shrink-0"
           >
-            <div className="w-9 h-9 bg-hanko border-2 border-ink shadow-manga-sm flex items-center justify-center font-jp font-black text-white text-lg group-hover:-rotate-6 transition-transform">
-              創
-            </div>
-            <div className="leading-tight">
-              <div className="font-display font-black text-base sm:text-lg tracking-tight text-ink uppercase">
-                Joshua Nancey
-              </div>
-              <div className="font-mono text-[10px] tracking-widest text-slateink hidden xl:block">
-                {pick(UI_COPY.nav.brandSub, lang)}
-              </div>
-            </div>
+            <span className="w-2.5 h-2.5 rounded-full bg-hanko group-hover:scale-125 transition-transform" />
+            <span className="font-mono font-bold text-xs sm:text-sm tracking-[0.22em] text-white uppercase">
+              JOSHUA NANCEY
+            </span>
           </Link>
 
-          {/* Top Menu: 5 Chapter Tabs (ABOUT, PROJECTS, EXPERIENCE, STACK, CONTACT) */}
+          {/* Top Navigation Links: Floating transparent links with sleek active underline */}
           {isHome ? (
             <nav
               aria-label="Manga Chapters"
-              className="hidden md:flex items-center gap-1 bg-washi border-2 border-ink p-1 shadow-manga-sm"
+              className="hidden md:flex items-center gap-6 lg:gap-8"
             >
               {chapters.map((ch) => {
                 const isActive = activeChapter === ch.id;
@@ -50,21 +44,18 @@ export function MangaNavbar() {
                   <button
                     key={ch.id}
                     onClick={() => navigateChapter(ch.id as ChapterId)}
-                    className={`relative px-3 lg:px-4 py-1.5 font-mono text-xs font-bold tracking-wider transition-colors flex items-center gap-1.5 ${
-                      isActive ? "text-white" : "text-ink hover:bg-white"
+                    className={`relative py-1.5 font-mono text-[11px] lg:text-xs font-bold tracking-[0.18em] uppercase transition-colors ${
+                      isActive ? "text-white" : "text-white/60 hover:text-white"
                     }`}
                   >
+                    <span>{lang === "en" ? ch.en : ch.fr}</span>
                     {isActive && (
                       <motion.span
-                        layoutId="activeChapterPill"
+                        layoutId="activeNavUnderline"
                         transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                        className="absolute inset-0 bg-ink z-0"
+                        className="absolute left-0 right-0 -bottom-0.5 h-[2px] bg-hanko"
                       />
                     )}
-                    <span className="relative z-10 text-hanko font-black">
-                      {isActive ? ch.kanji : ch.num}
-                    </span>
-                    <span className="relative z-10">{lang === "en" ? ch.en : ch.fr}</span>
                   </button>
                 );
               })}
@@ -72,36 +63,34 @@ export function MangaNavbar() {
           ) : (
             <Link
               href="/"
-              className="hidden md:inline-flex items-center gap-2 px-4 py-1.5 bg-ink text-white font-mono text-xs font-bold border-2 border-ink hover:bg-hanko transition-colors"
+              className="hidden md:inline-flex items-center gap-2 font-mono text-xs font-bold tracking-widest text-white/80 hover:text-white transition-colors"
             >
-              <BookOpen className="w-3.5 h-3.5" />
-              <span>{lang === "en" ? "← OPEN MANGA BOOK" : "← OUVRIR LE MANGA"}</span>
+              <BookOpen className="w-3.5 h-3.5 text-hanko" />
+              <span>{lang === "en" ? "← BACK TO MANGA" : "← RETOUR AU MANGA"}</span>
             </Link>
           )}
 
-          {/* Language Switch EN / FR Right */}
-          <div className="flex items-center gap-2 shrink-0">
-            <button
-              onClick={toggleLang}
-              aria-label="Toggle language"
-              className="px-3 py-1.5 bg-washi border-2 border-ink font-mono text-xs font-bold shadow-manga-sm hover:bg-ink hover:text-white transition-colors flex items-center gap-1.5"
-            >
-              <span className={lang === "en" ? "text-hanko font-black" : "opacity-50"}>
-                EN
-              </span>
-              <span className="opacity-40">/</span>
-              <span className={lang === "fr" ? "text-hanko font-black" : "opacity-50"}>
-                FR
-              </span>
-            </button>
-          </div>
+          {/* Minimal Language Switch EN | FR Right */}
+          <button
+            onClick={toggleLang}
+            aria-label="Toggle language"
+            className="px-2.5 py-1 font-mono text-[11px] font-bold tracking-widest text-white/80 hover:text-white border border-white/25 rounded-sm hover:border-hanko transition-colors flex items-center gap-1.5 shrink-0"
+          >
+            <span className={lang === "en" ? "text-hanko font-black" : "opacity-50"}>
+              EN
+            </span>
+            <span className="opacity-30">/</span>
+            <span className={lang === "fr" ? "text-hanko font-black" : "opacity-50"}>
+              FR
+            </span>
+          </button>
         </div>
 
-        {/* Mobile Chapter Bar (Clean horizontal strip) */}
+        {/* Mobile Chapter Bar */}
         {isHome && (
           <nav
             aria-label="Mobile Chapters"
-            className="flex md:hidden items-center gap-1.5 pb-2.5 overflow-x-auto"
+            className="flex md:hidden items-center justify-between gap-2 pb-2 overflow-x-auto"
           >
             {chapters.map((ch) => {
               const isActive = activeChapter === ch.id;
@@ -109,15 +98,12 @@ export function MangaNavbar() {
                 <button
                   key={ch.id}
                   onClick={() => navigateChapter(ch.id as ChapterId)}
-                  className={`shrink-0 px-2.5 py-1.5 font-mono text-[10px] font-bold border-2 border-ink transition-colors ${
+                  className={`shrink-0 px-2 py-1 font-mono text-[10px] font-bold tracking-wider uppercase transition-colors ${
                     isActive
-                      ? "bg-ink text-white shadow-manga-sm"
-                      : "bg-washi text-ink"
+                      ? "text-white border-b-2 border-hanko"
+                      : "text-white/55"
                   }`}
                 >
-                  <span className={isActive ? "text-hanko" : "text-slateink"}>
-                    {ch.num}.{" "}
-                  </span>
                   {lang === "en" ? ch.en : ch.fr}
                 </button>
               );

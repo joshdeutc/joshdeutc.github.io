@@ -163,12 +163,12 @@ export const PROJECTS_DATA: ProjectItem[] = [
     },
     highlights: [
       {
-        en: "Pentagon constellation UI (`ZoomableCanvasView`) with 5 modules around a central Security & Delay core.",
-        fr: "Interface minimaliste en constellation pentagonale (`ZoomableCanvasView`) articulant 5 modules autour du noyau Security & Delay.",
+        en: "Pentagon constellation UI (ZoomableCanvasView) with 5 modules around a central Security & Delay core.",
+        fr: "Interface minimaliste en constellation pentagonale (ZoomableCanvasView) articulant 5 modules autour du noyau Security & Delay.",
       },
       {
-        en: "Zero-Trust App Whitelist & 72h Quarantine Delay blocking impulse installs via `DevicePolicyManager`.",
-        fr: "Whitelist Zero-Trust et délai de quarantaine de 72h neutralisant toute nouvelle installation impulsive via `DevicePolicyManager`.",
+        en: "Zero-Trust App Whitelist & 72h Quarantine Delay blocking impulse installs via DevicePolicyManager.",
+        fr: "Whitelist Zero-Trust et délai de quarantaine de 72h neutralisant toute nouvelle installation impulsive via DevicePolicyManager.",
       },
       {
         en: "Cross-OEM hardening tested across Google Pixel 8a, Xiaomi HyperOS and Samsung Galaxy A53 (Knox / Magisk ABX provisioning).",
@@ -206,8 +206,8 @@ export const PROJECTS_DATA: ProjectItem[] = [
     },
     highlights: [
       {
-        en: "Built adversarial 4-tier grader (`verify.csv`: `hallucination > parse_failed > no_evidence > wrong_class`), proving a 31B model's deceptive 1.000 precision came from 55% JSON failures and catching errors in reference gold-standard datasets.",
-        fr: "Conception d'un grader adversaire à 4 niveaux (`verify.csv`), révélant que la précision 1,000 d'un modèle 31B masquait 55 % d'échecs JSON et débusquant des erreurs dans le jeu de référence.",
+        en: "Built adversarial 4-tier grader (verify.csv: hallucination > parse_failed > no_evidence > wrong_class), proving a 31B model's deceptive 1.000 precision came from 55% JSON failures and catching errors in reference gold-standard datasets.",
+        fr: "Conception d'un grader adversaire à 4 niveaux (verify.csv), révélant que la précision 1,000 d'un modèle 31B masquait 55 % d'échecs JSON et débusquant des erreurs dans le jeu de référence.",
       },
       {
         en: "Diagnosed +40% BPE tokenizer expansion in Croatian vs English and calibrated an exact 16,384-token context window eliminating silent truncation.",

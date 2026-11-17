@@ -9,12 +9,12 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        washi: "#F6F3EC",
-        paper: "#FFFDF9",
+        washi: "#F3F4F6",
+        paper: "#FFFFFF",
         ink: "#111111",
         hanko: "#D62828",
         "hanko-dark": "#B31B1B",
-        slateink: "#4A4843",
+        slateink: "#4B5563",
       },
       fontFamily: {
         display: ["var(--font-display)", "sans-serif"],

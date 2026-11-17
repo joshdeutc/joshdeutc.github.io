@@ -3,47 +3,36 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
-    background-color: #f6f3ec;
-    color: #111111;
-  }
-
+  html,
   body {
-    background-color: #f6f3ec;
-    background-image: radial-gradient(rgba(17, 17, 17, 0.055) 1px, transparent 1px);
-    background-size: 16px 16px;
-    color: #111111;
+    background-color: #0b0c10;
+    color: #f8fafc;
     overflow-x: hidden;
+    margin: 0;
+    padding: 0;
   }
 
   ::selection {
-    background-color: #d62828;
+    background-color: #e63946;
     color: #ffffff;
   }
 }
 
-/* Unified manga paper background for top menu, center book arena, and bottom bar */
-.unified-manga-bg {
-  background-color: #f6f3ec;
-  background-image: radial-gradient(rgba(17, 17, 17, 0.055) 1px, transparent 1px);
-  background-size: 16px 16px;
-}
-
-/* Manga paper & halftone screentones */
-.manga-page-paper {
+/* Manga paper inside the floating open book */
+.manga-sheet {
   background-color: #ffffff;
-  background-image: radial-gradient(rgba(17, 17, 17, 0.04) 0.9px, transparent 0.9px);
-  background-size: 14px 14px;
+  color: #111111;
+  background-image: radial-gradient(rgba(17, 17, 17, 0.045) 0.85px, transparent 0.85px);
+  background-size: 13px 13px;
 }
 
 .halftone-subtle {
-  background-image: radial-gradient(rgba(17, 17, 17, 0.12) 1.15px, transparent 1.15px);
+  background-image: radial-gradient(rgba(17, 17, 17, 0.12) 1.1px, transparent 1.1px);
   background-size: 8px 8px;
 }
 
 .halftone-red {
-  background-image: radial-gradient(rgba(214, 40, 40, 0.14) 1.15px, transparent 1.15px);
+  background-image: radial-gradient(rgba(214, 40, 40, 0.13) 1.1px, transparent 1.1px);
   background-size: 9px 9px;
 }
 
@@ -57,30 +46,29 @@
   );
 }
 
-/* Comic / Manga Panels inside the open book */
+/* Clean Manga Panels inside white book pages */
 .manga-panel {
-  @apply border-[2.5px] border-ink bg-white shadow-manga-sm transition-all duration-200;
+  border: 2px solid #111111;
+  background: #ffffff;
+  box-shadow: 3px 3px 0px #111111;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.manga-panel-interactive {
-  @apply border-[2.5px] border-ink bg-white shadow-manga-sm transition-all duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-manga;
-}
-
-/* Authentic Manga Speech Bubble */
+/* Manga Speech Bubble */
 .manga-bubble {
   position: relative;
-  border: 2.5px solid #111111;
+  border: 2px solid #111111;
   background: #ffffff;
-  border-radius: 22px;
+  border-radius: 18px;
   box-shadow: 3px 3px 0px #111111;
 }
 
 .manga-bubble-left::after {
   content: "";
   position: absolute;
-  top: 22px;
-  left: -14px;
-  border-width: 8px 14px 8px 0;
+  top: 20px;
+  left: -13px;
+  border-width: 7px 13px 7px 0;
   border-style: solid;
   border-color: transparent #111111 transparent transparent;
 }
@@ -88,78 +76,36 @@
 .manga-bubble-left::before {
   content: "";
   position: absolute;
-  top: 24px;
-  left: -10px;
-  border-width: 6px 11px 6px 0;
+  top: 22px;
+  left: -9px;
+  border-width: 5px 10px 5px 0;
   border-style: solid;
   border-color: transparent #ffffff transparent transparent;
   z-index: 1;
 }
 
-.manga-bubble-bottom::after {
-  content: "";
-  position: absolute;
-  bottom: -14px;
-  left: 30px;
-  border-width: 14px 12px 0 0;
-  border-style: solid;
-  border-color: #111111 transparent transparent transparent;
-}
-
-.manga-bubble-bottom::before {
-  content: "";
-  position: absolute;
-  bottom: -9px;
-  left: 32px;
-  border-width: 11px 9px 0 0;
-  border-style: solid;
-  border-color: #ffffff transparent transparent transparent;
-  z-index: 1;
-}
-
-/* Book central spine shadow (gutter between left & right manga pages) */
+/* Realistic center book spine gutter */
 .book-gutter-left {
   background: linear-gradient(
     to left,
-    rgba(17, 17, 17, 0.2) 0%,
-    rgba(17, 17, 17, 0.07) 14px,
-    rgba(17, 17, 17, 0.015) 36px,
-    transparent 64px
+    rgba(0, 0, 0, 0.16) 0%,
+    rgba(0, 0, 0, 0.05) 14px,
+    rgba(0, 0, 0, 0.01) 36px,
+    transparent 60px
   );
 }
 
 .book-gutter-right {
   background: linear-gradient(
     to right,
-    rgba(17, 17, 17, 0.2) 0%,
-    rgba(17, 17, 17, 0.07) 14px,
-    rgba(17, 17, 17, 0.015) 36px,
-    transparent 64px
+    rgba(0, 0, 0, 0.16) 0%,
+    rgba(0, 0, 0, 0.05) 14px,
+    rgba(0, 0, 0, 0.01) 36px,
+    transparent 60px
   );
 }
 
-/* Paper thickness stack effect on edges of open book */
-.book-edge-left {
-  box-shadow:
-    -3px 0 0 #eae5d9,
-    -4px 0 0 #111111,
-    -7px 0 0 #dfd8c8,
-    -8px 0 0 #111111,
-    -11px 0 0 #d2cbb8,
-    -12px 0 0 #111111;
-}
-
-.book-edge-right {
-  box-shadow:
-    3px 0 0 #eae5d9,
-    4px 0 0 #111111,
-    7px 0 0 #dfd8c8,
-    8px 0 0 #111111,
-    11px 0 0 #d2cbb8,
-    12px 0 0 #111111;
-}
-
-/* Hide scrollbars inside manga pages while preserving wheel accessibility on tiny viewports */
+/* Hide scrollbars cleanly while keeping scroll fallback on tiny screens */
 .manga-scroll {
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -168,13 +114,13 @@
   display: none;
 }
 
-/* Washi masking tape look for physical photo pinned on manga board */
+/* Washi masking tape for real photo pinned onto manga sheet */
 .masking-tape {
   background: linear-gradient(
     135deg,
-    rgba(242, 224, 175, 0.92),
-    rgba(232, 209, 149, 0.88)
+    rgba(242, 224, 175, 0.94),
+    rgba(232, 209, 149, 0.9)
   );
   border: 1px dashed rgba(17, 17, 17, 0.25);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.14);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.16);
 }

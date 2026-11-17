@@ -50,7 +50,7 @@ export function useContactSpread() {
 
   const leftPage = (
     <div className="space-y-3">
-      <div className="flex items-start justify-between gap-2 border-b-[2.5px] border-ink pb-2">
+      <div className="flex items-start justify-between gap-2 border-b border-ink/15 pb-2">
         <div>
           <span className="inline-block px-2 py-0.5 bg-hanko text-white font-mono text-[9px] font-bold tracking-widest mb-1">
             {pick(copy.badge, lang)}
