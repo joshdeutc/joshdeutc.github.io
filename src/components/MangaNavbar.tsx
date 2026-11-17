@@ -24,7 +24,7 @@ export function MangaNavbar() {
   const chapters = UI_COPY.nav.chapters;
 
   return (
-    <header className="sticky top-0 z-50 bg-[#0B0C10]/80 backdrop-blur-md">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-[#0B0C10]/85 backdrop-blur-md">
       <div className="max-w-[1200px] mx-auto px-4 sm:px-8">
         <div className="h-14 flex items-center justify-between gap-4">
           <Link

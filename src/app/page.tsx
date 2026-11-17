@@ -10,12 +10,13 @@ import { WebtoonProjects } from "@/components/WebtoonProjects";
 import { WebtoonExperience } from "@/components/WebtoonExperience";
 import { WebtoonStack } from "@/components/WebtoonStack";
 import { WebtoonContact } from "@/components/WebtoonContact";
+import { WebtoonStoryBeat } from "@/components/WebtoonStoryBeat";
 import { CHAPTER_ORDER, ChapterId, useManga } from "@/components/MangaContext";
 
 export default function HomePage() {
   const { setActiveChapter } = useManga();
 
-  // Live Scroll-Spy updating active chapter tab in top navbar while reading top-to-bottom
+  // Live Scroll-Spy updating active chapter tab in fixed top navbar
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -31,7 +32,7 @@ export default function HomePage() {
         }
       },
       {
-        rootMargin: "-25% 0px -45% 0px",
+        rootMargin: "-20% 0px -45% 0px",
         threshold: [0.1, 0.35, 0.6],
       }
     );
@@ -50,60 +51,75 @@ export default function HomePage() {
       <MangaLoader />
       <MangaNavbar />
 
-      {/* Centered Vertical Webtoon Reading Strip over Continuous Interactive Dark Canvas */}
-      <main className="relative z-10 flex-1 w-full max-w-[980px] mx-auto px-4 sm:px-6 pt-6 sm:pt-10 pb-16">
+      {/* Padded cleanly for fixed top bar; vertical Webtoon strip with dynamic story adventure beats */}
+      <main className="relative z-10 flex-1 w-full max-w-[980px] mx-auto px-4 sm:px-6 pt-20 sm:pt-20 pb-14">
         <WebtoonHeroAbout />
 
-        {/* Vertical Webtoon Ink Gutter Divider */}
-        <div
-          className="my-12 sm:my-16 flex flex-col items-center gap-2 pointer-events-none select-none"
-          aria-hidden="true"
-        >
-          <span className="w-px h-10 bg-gradient-to-b from-transparent via-hanko/70 to-hanko" />
-          <span className="font-mono text-[9px] font-bold tracking-[0.3em] text-white/35">
-            ///
-          </span>
-          <span className="w-px h-10 bg-gradient-to-b from-hanko via-white/20 to-transparent" />
-        </div>
+        <WebtoonStoryBeat
+          sceneTag="SCENE 01"
+          narrator={{
+            en: "FROM MATHEMATICAL PROOFS TO SHIPPED SYSTEMS",
+            fr: "DES PREUVES MATHÉMATIQUES AUX SYSTÈMES DÉPLOYÉS",
+          }}
+          dialogue={{
+            en: "Mathematical training complete at UTC. Now entering the forge where research theorems meet Android OS & real clinical wards.",
+            fr: "Formation mathématique accomplie à l'UTC. Place au terrain : là où théorèmes, noyau Android et hôpitaux réels s'affrontent.",
+          }}
+          sfx="SHING!!"
+          artSrc="/images/manga/ai-guardian.jpg"
+          align="left"
+        />
 
         <WebtoonProjects />
 
-        <div
-          className="my-12 sm:my-16 flex flex-col items-center gap-2 pointer-events-none select-none"
-          aria-hidden="true"
-        >
-          <span className="w-px h-10 bg-gradient-to-b from-transparent via-hanko/70 to-hanko" />
-          <span className="font-mono text-[9px] font-bold tracking-[0.3em] text-white/35">
-            ///
-          </span>
-          <span className="w-px h-10 bg-gradient-to-b from-hanko via-white/20 to-transparent" />
-        </div>
+        <WebtoonStoryBeat
+          sceneTag="SCENE 02"
+          narrator={{
+            en: "FIELD MISSIONS ACROSS PRODUCTION & R&D",
+            fr: "MISSIONS DE TERRAIN EN PRODUCTION & R&D",
+          }}
+          dialogue={{
+            en: "Prototypes aren't enough — every deployment forged stronger engineering instincts across French clinics, fintech & consulting teams.",
+            fr: "Un prototype ne suffit pas : chaque mission a forgé la rigueur de mise en production, du terrain médical aux architectures distribuées.",
+          }}
+          sfx="WHOOSH!!"
+          artSrc="/images/manga/flip-verso.jpg"
+          align="right"
+        />
 
         <WebtoonExperience />
 
-        <div
-          className="my-12 sm:my-16 flex flex-col items-center gap-2 pointer-events-none select-none"
-          aria-hidden="true"
-        >
-          <span className="w-px h-10 bg-gradient-to-b from-transparent via-hanko/70 to-hanko" />
-          <span className="font-mono text-[9px] font-bold tracking-[0.3em] text-white/35">
-            ///
-          </span>
-          <span className="w-px h-10 bg-gradient-to-b from-hanko via-white/20 to-transparent" />
-        </div>
+        <WebtoonStoryBeat
+          sceneTag="SCENE 03"
+          narrator={{
+            en: "OPENING THE FULL ENGINEERING ARSENAL",
+            fr: "OUVERTURE DE L'ARSENAL TECHNIQUE",
+          }}
+          dialogue={{
+            en: "Behind every metric lies the exact tooling chosen for the job — zero bloat, every stack battle-tested.",
+            fr: "Derrière chaque métrique se cache l'outil exact éprouvé sur le terrain : zéro gadget, uniquement du concret.",
+          }}
+          sfx="CLANK!!"
+          artSrc="/images/manga/flip-action.jpg"
+          align="left"
+        />
 
         <WebtoonStack />
 
-        <div
-          className="my-12 sm:my-16 flex flex-col items-center gap-2 pointer-events-none select-none"
-          aria-hidden="true"
-        >
-          <span className="w-px h-10 bg-gradient-to-b from-transparent via-hanko/70 to-hanko" />
-          <span className="font-mono text-[9px] font-bold tracking-[0.3em] text-white/35">
-            FIN
-          </span>
-          <span className="w-px h-10 bg-gradient-to-b from-hanko via-white/20 to-transparent" />
-        </div>
+        <WebtoonStoryBeat
+          sceneTag="FINAL BEAT"
+          narrator={{
+            en: "READY FOR THE NEXT QUEST",
+            fr: "PRÊT POUR LA PROCHAINE QUÊTE",
+          }}
+          dialogue={{
+            en: "Need someone who bridges rigorous math, grounded AI, and rugged systems engineering? Let's build.",
+            fr: "Besoin d'un ingénieur qui relie mathématiques rigoureuses, IA vérifiable et systèmes robustes ? Passons à l'action.",
+          }}
+          sfx="DON!!"
+          artSrc="/images/manga/cover-hero.jpg"
+          align="right"
+        />
 
         <WebtoonContact />
       </main>

@@ -37,10 +37,10 @@ export function WebtoonExperience() {
         {EXPERIENCES_DATA.map((exp, idx) => (
           <motion.div
             key={exp.id}
-            initial={{ opacity: 0.4, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.25, delay: idx * 0.04 }}
+            initial={{ opacity: 0, x: idx % 2 === 0 ? -28 : 28, y: 12 }}
+            whileInView={{ opacity: 1, x: 0, y: 0 }}
+            viewport={{ once: false, amount: 0.2 }}
+            transition={{ duration: 0.35, delay: idx * 0.05 }}
             className="relative"
           >
             {/* Timeline Red Node Dot */}

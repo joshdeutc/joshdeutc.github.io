@@ -55,10 +55,10 @@ export function WebtoonProjects() {
 
       {/* FLAGSHIP FULL-WIDTH COMIC PANEL: CUSTOS */}
       <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-40px" }}
-        transition={{ duration: 0.45 }}
+        initial={{ opacity: 0, y: 26, scale: 0.96 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        viewport={{ once: false, amount: 0.15 }}
+        transition={{ duration: 0.4 }}
         onClick={() => openProjectZoom(custos)}
         role="button"
         tabIndex={0}
@@ -141,10 +141,10 @@ export function WebtoonProjects() {
           return (
             <motion.div
               key={proj.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-30px" }}
-              transition={{ duration: 0.35, delay: idx * 0.05 }}
+              initial={{ opacity: 0, x: idx % 2 === 0 ? -24 : 24, y: 18, scale: 0.96 }}
+              whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }}
+              viewport={{ once: false, amount: 0.15 }}
+              transition={{ duration: 0.38, delay: (idx % 2) * 0.06 }}
               onClick={() => openProjectZoom(proj)}
               role="button"
               tabIndex={0}

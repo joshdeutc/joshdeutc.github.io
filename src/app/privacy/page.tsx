@@ -91,7 +91,7 @@ export default function PrivacyPage() {
       <MangaCanvasBg />
       <MangaNavbar />
 
-      <main className="relative z-10 text-ink flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 py-8 sm:py-10 my-4 bg-paper border border-white/20 rounded-sm shadow-[0_24px_75px_rgba(0,0,0,0.65)] space-y-8">
+      <main className="relative z-10 text-ink flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 py-8 sm:py-10 mt-20 mb-6 bg-paper border border-white/20 rounded-sm shadow-[0_24px_75px_rgba(0,0,0,0.65)] space-y-8">
         {/* Header */}
         <div className="flex items-end justify-between gap-4 border-b-[3px] border-ink pb-4">
           <div>
