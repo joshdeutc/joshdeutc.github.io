@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { CheckCircle2, Mail, Send, ShieldCheck, Lock } from "lucide-react";
 import { MangaNavbar } from "@/components/MangaNavbar";
 import { MangaFooter } from "@/components/MangaFooter";
-import { MangaCanvasBg } from "@/components/MangaCanvasBg";
 import { useManga } from "@/components/MangaContext";
 import { PROFILE_LINKS } from "@/lib/portfolio-data";
 
@@ -87,11 +86,10 @@ export default function PrivacyPage() {
   )}`;
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#0B0C10] text-white relative">
-      <MangaCanvasBg />
+    <div className="min-h-screen flex flex-col bg-washi text-ink">
       <MangaNavbar />
 
-      <main className="relative z-10 text-ink flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 py-8 sm:py-10 mt-20 mb-6 bg-paper border border-white/20 rounded-sm shadow-[0_24px_75px_rgba(0,0,0,0.65)] space-y-8">
+      <main className="text-ink flex-1 max-w-5xl w-full mx-auto px-5 sm:px-8 py-8 sm:py-10 mt-20 mb-8 bg-paper border border-ink/20 shadow-sm space-y-8">
         {/* Header */}
         <div className="flex items-end justify-between gap-4 border-b-[3px] border-ink pb-4">
           <div>

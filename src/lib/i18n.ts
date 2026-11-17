@@ -105,8 +105,8 @@ export const UI_COPY = {
     badge: { en: "CHAPTER 05 · SUMMON JOSHUA", fr: "CHAPITRE 05 · CONTACTER JOSHUA" },
     title: { en: "LET'S BUILD SOMETHING SOLID", fr: "CONSTRUISONS QUELQUE CHOSE DE SOLIDE" },
     bubble: {
-      en: "Need an AI Engineer (LLMs, RAG, Vision), a Backend Architect, or an Android Kotlin specialist? Drop a message in this manga panel or book me directly on Malt!",
-      fr: "Besoin d'un Ingénieur IA (LLMs, RAG, Vision), d'un Architecte Backend ou d'un développeur Android Kotlin ? Envoyez-moi un message ici ou passez par Malt !",
+      en: "Need an AI Engineer (LLMs, RAG, Vision), a Backend Architect, or an Android Kotlin specialist? Send an inquiry directly via the form or book a mission on Malt.",
+      fr: "Besoin d'un Ingénieur IA (LLMs, RAG, Vision), d'un Architecte Backend ou d'un spécialiste Android Kotlin ? Écrivez-moi via le formulaire ou réservez une mission sur Malt.",
     },
     directTitle: { en: "DIRECT CHANNELS & RESUMES", fr: "CANAUX DIRECTS & CVs" },
     formTitle: { en: "SEND A MESSAGE", fr: "ENVOYER UN MESSAGE" },

@@ -9,24 +9,19 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        washi: "#F3F4F6",
-        paper: "#FFFFFF",
+        washi: "#F5F3EE",
+        "washi-alt": "#ECE8DF",
+        paper: "#FAF8F4",
         ink: "#111111",
         hanko: "#D62828",
         "hanko-dark": "#B31B1B",
-        slateink: "#4B5563",
+        slateink: "#4D4B46",
       },
       fontFamily: {
         display: ["var(--font-display)", "sans-serif"],
         sans: ["var(--font-sans)", "sans-serif"],
         mono: ["var(--font-mono)", "monospace"],
         jp: ["var(--font-jp)", "sans-serif"],
-      },
-      boxShadow: {
-        manga: "5px 5px 0px 0px #111111",
-        "manga-sm": "3px 3px 0px 0px #111111",
-        "manga-lg": "8px 8px 0px 0px #111111",
-        "manga-red": "5px 5px 0px 0px #D62828",
       },
     },
   },
