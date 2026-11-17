@@ -2,9 +2,8 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { FileText, GraduationCap, Award, Globe, MessageSquare, Sparkles } from "lucide-react";
+import { FileText, Flame, GraduationCap, Globe, MessageSquare, Shield, Sparkles, Users } from "lucide-react";
 import { useManga } from "./MangaContext";
-import { HankoStamp } from "./HankoStamp";
 import { pick, UI_COPY } from "@/lib/i18n";
 import {
   EDUCATION_DATA,
@@ -36,16 +35,25 @@ export function useAboutSpread() {
               : "INGÉNIEUR IA, SYSTÈMES LLM & ANDROID · PARIS"}
           </p>
         </div>
-        <HankoStamp kanji="主" size="sm" />
+        <span className="px-2 py-1 border-2 border-ink bg-white font-mono text-[10px] font-black tracking-widest text-ink shadow-manga-sm shrink-0">
+          VOL. 01
+        </span>
       </div>
 
-      {/* Comic Spread Panel: Pinned Real Photo + Manga Speech Bubbles */}
-      <div className="manga-panel p-3.5 speedlines-bg relative overflow-hidden">
-        <span className="hidden sm:inline-block absolute top-1.5 right-2.5 font-display font-black text-xs text-hanko/80 rotate-3 select-none pointer-events-none">
+      {/* Comic Spread Panel: Pinned Real Photo OVER Original Illustrated Manga Ink Layer */}
+      <div className="manga-panel p-3.5 relative overflow-hidden bg-white">
+        {/* Background illustrated manga splash ink art peeking softly behind the photo & bubbles */}
+        <img
+          src="/images/manga/flip-action.jpg"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover opacity-[0.09] mix-blend-multiply pointer-events-none select-none"
+        />
+        <span className="hidden sm:inline-block absolute top-1.5 right-2.5 font-display font-black text-xs text-hanko/85 rotate-3 select-none pointer-events-none z-10">
           DON!!
         </span>
 
-        <div className="grid grid-cols-1 sm:grid-cols-12 gap-3.5 items-center">
+        <div className="relative z-10 grid grid-cols-1 sm:grid-cols-12 gap-3.5 items-center">
           {/* Real Physical Photo Pinned onto Manga Page */}
           <div className="sm:col-span-5 flex justify-center">
             <motion.div
@@ -61,8 +69,8 @@ export function useAboutSpread() {
                   alt="Joshua Nancey"
                   className="w-full h-full object-cover object-top"
                 />
-                <div className="absolute bottom-1 right-1 w-5 h-5 rounded-full bg-hanko border border-ink text-white font-jp font-black text-[9px] flex items-center justify-center">
-                  済
+                <div className="absolute bottom-1 right-1 px-1 py-0.5 bg-hanko border border-ink text-white font-mono font-black text-[8px] tracking-tighter">
+                  01
                 </div>
               </div>
               <div className="mt-1 flex items-center justify-between font-mono text-[9px] font-bold text-ink">
@@ -150,10 +158,10 @@ export function useAboutSpread() {
   );
 
   const rightPage = (
-    <div className="space-y-3">
+    <div className="space-y-2.5">
       {/* Case 1: Training Arc (Education) */}
-      <div className="manga-panel p-3 space-y-2">
-        <div className="flex items-center justify-between border-b-2 border-ink pb-1.5">
+      <div className="manga-panel p-2.5 space-y-1.5">
+        <div className="flex items-center justify-between border-b border-ink/20 pb-1">
           <div className="flex items-center gap-1.5">
             <GraduationCap className="w-4 h-4 text-hanko" />
             <h3 className="font-display font-black text-sm uppercase">
@@ -163,9 +171,9 @@ export function useAboutSpread() {
           <span className="font-mono text-[10px] font-bold text-slateink">2020 — 2026</span>
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-1.5">
           {EDUCATION_DATA.map((edu) => (
-            <div key={edu.id} className="p-2.5 border-2 border-ink bg-washi/60 space-y-1.5">
+            <div key={edu.id} className="p-2 border border-ink/50 bg-washi/60 space-y-1">
               <div className="flex items-start justify-between gap-2">
                 <div className="flex items-center gap-2">
                   {edu.logo ? (
@@ -208,11 +216,11 @@ export function useAboutSpread() {
         </div>
       </div>
 
-      {/* Case 2: Off-Screen Sport & Solidarity (3 compact manga panels, ZERO GAUGES) */}
-      <div className="manga-panel p-3 space-y-2">
-        <div className="flex items-center justify-between border-b-2 border-ink pb-1.5">
+      {/* Case 2: Off-Screen Sport & Solidarity with Illustrated Manga Action Strip */}
+      <div className="manga-panel p-2.5 space-y-2">
+        <div className="flex items-center justify-between border-b border-ink/20 pb-1">
           <div className="flex items-center gap-1.5">
-            <Award className="w-4 h-4 text-hanko" />
+            <Flame className="w-3.5 h-3.5 text-hanko" />
             <h3 className="font-display font-black text-sm uppercase">
               {pick(copy.passionsTitle, lang)}
             </h3>
@@ -222,23 +230,43 @@ export function useAboutSpread() {
           </span>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-          {OFF_SCREEN_ITEMS.map((item) => (
-            <div
-              key={item.id}
-              className="p-2 border-2 border-ink bg-white flex flex-col justify-between gap-1"
-            >
-              <div className="flex items-center gap-1.5">
-                <span className="text-base">{item.icon}</span>
-                <span className="font-display font-bold text-xs text-ink leading-tight">
-                  {pick(item.title, lang)}
-                </span>
+        {/* Custom Drawn Sports Manga Ink Strip (Boxing & Wrestling) */}
+        <div className="relative h-14 sm:h-[58px] w-full border border-ink overflow-hidden bg-white">
+          <img
+            src="/images/manga/sport-arena.jpg"
+            alt="Boxing & Wrestling Manga Illustration"
+            className="w-full h-full object-cover object-center"
+          />
+          <span className="absolute bottom-1 right-1.5 px-1.5 py-0.5 bg-ink/85 text-white font-mono text-[8px] font-bold tracking-wider">
+            MAT & RING DISCIPLINE
+          </span>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-1.5">
+          {OFF_SCREEN_ITEMS.map((item) => {
+            const IconComp =
+              item.id === "wrestling"
+                ? Flame
+                : item.id === "boxing"
+                ? Shield
+                : Users;
+            return (
+              <div
+                key={item.id}
+                className="p-2 border border-ink/50 bg-white flex flex-col justify-between gap-1 hover:border-hanko transition-colors"
+              >
+                <div className="flex items-center gap-1.5">
+                  <IconComp className="w-3.5 h-3.5 text-hanko shrink-0" />
+                  <span className="font-display font-bold text-xs text-ink leading-tight">
+                    {pick(item.title, lang)}
+                  </span>
+                </div>
+                <p className="text-[10px] text-slateink leading-snug">
+                  {pick(item.description, lang)}
+                </p>
               </div>
-              <p className="text-[10px] text-slateink leading-snug">
-                {pick(item.description, lang)}
-              </p>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Languages Badges */}

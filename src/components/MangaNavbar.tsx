@@ -9,7 +9,7 @@ import { ChapterId, useManga } from "./MangaContext";
 import { UI_COPY } from "@/lib/i18n";
 
 export function MangaNavbar() {
-  const { lang, toggleLang, activeChapter, navigateChapter } = useManga();
+  const { lang, toggleLang, activeChapter, navigateChapter, closeToCover } = useManga();
   const pathname = usePathname();
   const isHome = pathname === "/";
 
@@ -70,20 +70,35 @@ export function MangaNavbar() {
             </Link>
           )}
 
-          {/* Minimal Language Switch EN | FR Right */}
-          <button
-            onClick={toggleLang}
-            aria-label="Toggle language"
-            className="px-2.5 py-1 font-mono text-[11px] font-bold tracking-widest text-white/80 hover:text-white border border-white/25 rounded-sm hover:border-hanko transition-colors flex items-center gap-1.5 shrink-0"
-          >
-            <span className={lang === "en" ? "text-hanko font-black" : "opacity-50"}>
-              EN
-            </span>
-            <span className="opacity-30">/</span>
-            <span className={lang === "fr" ? "text-hanko font-black" : "opacity-50"}>
-              FR
-            </span>
-          </button>
+          {/* Cover Replay + Language Switch EN | FR Right */}
+          <div className="flex items-center gap-2 shrink-0">
+            {isHome && (
+              <button
+                onClick={closeToCover}
+                title={lang === "en" ? "Close to Volume Cover" : "Fermer vers la Couverture"}
+                className="px-2.5 py-1 font-mono text-[10px] font-bold tracking-wider text-white/75 hover:text-white border border-white/20 rounded-sm hover:border-hanko transition-colors flex items-center gap-1.5"
+              >
+                <BookOpen className="w-3 h-3 text-hanko" />
+                <span className="hidden sm:inline">
+                  {lang === "en" ? "COVER" : "TOME 01"}
+                </span>
+              </button>
+            )}
+
+            <button
+              onClick={toggleLang}
+              aria-label="Toggle language"
+              className="px-2.5 py-1 font-mono text-[11px] font-bold tracking-widest text-white/80 hover:text-white border border-white/25 rounded-sm hover:border-hanko transition-colors flex items-center gap-1.5 shrink-0"
+            >
+              <span className={lang === "en" ? "text-hanko font-black" : "opacity-50"}>
+                EN
+              </span>
+              <span className="opacity-30">/</span>
+              <span className={lang === "fr" ? "text-hanko font-black" : "opacity-50"}>
+                FR
+              </span>
+            </button>
+          </div>
         </div>
 
         {/* Mobile Chapter Bar */}

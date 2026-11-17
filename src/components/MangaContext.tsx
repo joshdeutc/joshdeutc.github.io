@@ -13,6 +13,9 @@ interface MangaContextType {
   setActiveChapter: (chapter: ChapterId) => void;
   direction: number;
   navigateChapter: (nextChapter: ChapterId) => void;
+  coverMode: "auto-opening" | "manual-closed" | "open";
+  setCoverMode: (mode: "auto-opening" | "manual-closed" | "open") => void;
+  closeToCover: () => void;
 }
 
 export const CHAPTER_ORDER: ChapterId[] = [
@@ -30,6 +33,9 @@ export function MangaProvider({ children }: { children: React.ReactNode }) {
   const [lang, setLang] = useState<Lang>("en");
   const [activeChapter, setActiveChapter] = useState<ChapterId>("about");
   const [direction, setDirection] = useState<number>(1);
+  const [coverMode, setCoverMode] = useState<"auto-opening" | "manual-closed" | "open">(
+    "auto-opening"
+  );
 
   const toggleLang = () => {
     setLang((prev) => (prev === "en" ? "fr" : "en"));
@@ -42,6 +48,10 @@ export function MangaProvider({ children }: { children: React.ReactNode }) {
     setActiveChapter(nextChapter);
   };
 
+  const closeToCover = () => {
+    setCoverMode("manual-closed");
+  };
+
   return (
     <MangaContext.Provider
       value={{
@@ -52,6 +62,9 @@ export function MangaProvider({ children }: { children: React.ReactNode }) {
         setActiveChapter,
         direction,
         navigateChapter,
+        coverMode,
+        setCoverMode,
+        closeToCover,
       }}
     >
       {children}

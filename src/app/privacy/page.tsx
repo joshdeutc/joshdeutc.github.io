@@ -5,7 +5,6 @@ import { CheckCircle2, Mail, Send, ShieldCheck, Lock } from "lucide-react";
 import { MangaNavbar } from "@/components/MangaNavbar";
 import { MangaFooter } from "@/components/MangaFooter";
 import { MangaCanvasBg } from "@/components/MangaCanvasBg";
-import { HankoStamp } from "@/components/HankoStamp";
 import { useManga } from "@/components/MangaContext";
 import { PROFILE_LINKS } from "@/lib/portfolio-data";
 
@@ -111,7 +110,9 @@ export default function PrivacyPage() {
                 : "Application : Custos (com.jo.selfcontrol.ultimate) · Éditeur : Custos - Joshua Nancey · Mise à jour : Novembre 2026"}
             </p>
           </div>
-          <HankoStamp kanji="護" size="lg" />
+          <div className="w-12 h-12 rounded-sm border-2 border-ink bg-hanko text-white flex items-center justify-center shadow-manga-sm shrink-0">
+            <ShieldCheck className="w-6 h-6" />
+          </div>
         </div>
 
         {/* Executive Zero-Data Summary */}

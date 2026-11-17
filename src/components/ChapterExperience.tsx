@@ -182,16 +182,29 @@ export function useExperienceSpread() {
   );
 
   const leftPage = (
-    <div>
+    <div className="relative">
       {spreadSwitcher}
-      <ExperienceMangaPanel exp={leftExp} />
+      <motion.div
+        key={`left-arc-${spreadIdx}`}
+        initial={{ opacity: 0.35, y: 6 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.25 }}
+      >
+        <ExperienceMangaPanel exp={leftExp} />
+      </motion.div>
     </div>
   );
 
   const rightPage = (
-    <div>
+    <motion.div
+      key={`right-arc-${spreadIdx}`}
+      initial={{ opacity: 0.35, y: 6 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.25 }}
+      className="relative"
+    >
       <ExperienceMangaPanel exp={rightExp} />
-    </div>
+    </motion.div>
   );
 
   return { leftPage, rightPage, spreadIdx, setSpreadIdx };

@@ -10,7 +10,6 @@ import {
   Send,
 } from "lucide-react";
 import { useManga } from "./MangaContext";
-import { HankoStamp } from "./HankoStamp";
 import { pick, UI_COPY } from "@/lib/i18n";
 import { PROFILE_LINKS } from "@/lib/portfolio-data";
 
@@ -59,12 +58,26 @@ export function useContactSpread() {
             {pick(copy.title, lang)}
           </h1>
         </div>
-        <HankoStamp kanji="連" size="sm" />
+        <span className="px-2 py-1 border-2 border-ink bg-white font-mono text-[10px] font-black text-ink shadow-manga-sm shrink-0">
+          CH.05
+        </span>
       </div>
 
-      {/* Protagonist Speech Bubble */}
-      <div className="manga-bubble p-3 text-xs font-medium text-ink leading-snug">
-        “{pick(copy.bubble, lang)}”
+      {/* Illustrated Manga Protagonist Panel + Recruiter Speech Bubble */}
+      <div className="grid grid-cols-12 gap-2.5 items-center">
+        <div className="col-span-4 h-24 sm:h-28 border-2 border-ink bg-white overflow-hidden shadow-manga-sm relative">
+          <img
+            src="/images/manga/cover-hero.jpg"
+            alt="Manga Protagonist"
+            className="w-full h-full object-cover object-[50%_62%]"
+          />
+          <span className="absolute bottom-1 left-1 px-1 py-0.5 bg-ink/85 text-white font-mono text-[8px] font-bold">
+            READY
+          </span>
+        </div>
+        <div className="col-span-8 manga-bubble manga-bubble-left p-2.5 text-[11px] sm:text-xs font-medium text-ink leading-snug">
+          “{pick(copy.bubble, lang)}”
+        </div>
       </div>
 
       {/* Malt Flagship Hire Panel */}

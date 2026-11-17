@@ -88,21 +88,54 @@
 .book-gutter-left {
   background: linear-gradient(
     to left,
-    rgba(0, 0, 0, 0.16) 0%,
-    rgba(0, 0, 0, 0.05) 14px,
-    rgba(0, 0, 0, 0.01) 36px,
-    transparent 60px
+    rgba(0, 0, 0, 0.22) 0%,
+    rgba(0, 0, 0, 0.08) 12px,
+    rgba(0, 0, 0, 0.02) 34px,
+    transparent 64px
   );
 }
 
 .book-gutter-right {
   background: linear-gradient(
     to right,
-    rgba(0, 0, 0, 0.16) 0%,
-    rgba(0, 0, 0, 0.05) 14px,
-    rgba(0, 0, 0, 0.01) 36px,
-    transparent 60px
+    rgba(0, 0, 0, 0.22) 0%,
+    rgba(0, 0, 0, 0.08) 12px,
+    rgba(0, 0, 0, 0.02) 34px,
+    transparent 64px
   );
+}
+
+/* Stacked fore-edge paper striations for physical book depth */
+.book-pages-edge-left {
+  background: repeating-linear-gradient(
+    to right,
+    #d1d5db 0px,
+    #d1d5db 1.5px,
+    #f9fafb 1.5px,
+    #f9fafb 3px
+  );
+  border-right: 1px solid rgba(17, 17, 17, 0.2);
+}
+
+.book-pages-edge-right {
+  background: repeating-linear-gradient(
+    to left,
+    #d1d5db 0px,
+    #d1d5db 1.5px,
+    #f9fafb 1.5px,
+    #f9fafb 3px
+  );
+  border-left: 1px solid rgba(17, 17, 17, 0.2);
+}
+
+/* 3D Transform helpers */
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 /* Hide scrollbars cleanly while keeping scroll fallback on tiny screens */

@@ -80,7 +80,7 @@ export interface OffScreenItem {
 export const OFF_SCREEN_ITEMS: OffScreenItem[] = [
   {
     id: "wrestling",
-    icon: "🤼",
+    icon: "WRESTLING",
     title: { en: "Wrestling", fr: "Lutte Libre" },
     role: { en: "PRIMARY PASTIME · SPORT", fr: "PASSE-TEMPS PRINCIPAL · SPORT" },
     description: {
@@ -90,7 +90,7 @@ export const OFF_SCREEN_ITEMS: OffScreenItem[] = [
   },
   {
     id: "boxing",
-    icon: "🥊",
+    icon: "BOXING",
     title: { en: "English Boxing", fr: "Boxe Anglaise" },
     role: { en: "COMBAT SPORT", fr: "SPORT DE COMBAT" },
     description: {
@@ -100,7 +100,7 @@ export const OFF_SCREEN_ITEMS: OffScreenItem[] = [
   },
   {
     id: "grocery",
-    icon: "🤝",
+    icon: "SOLIDARITY",
     title: { en: "Student Solidarity Grocery", fr: "Épicerie Solidaire UTC" },
     role: { en: "VOLUNTEER LOGISTICS", fr: "ENGAGEMENT ASSOCIATIF" },
     description: {
@@ -573,7 +573,7 @@ export interface SkillItem {
 export interface SkillCategory {
   id: string;
   title: LocalizedText;
-  kanji: string;
+  code: string;
   subtitle: LocalizedText;
   items: SkillItem[];
 }
@@ -582,7 +582,7 @@ export const STACK_CATEGORIES: SkillCategory[] = [
   {
     id: "llm-rag",
     title: { en: "LLMs, Agents, RAG & Eval", fr: "LLMs, Agents, RAG & Évaluation" },
-    kanji: "知",
+    code: "01",
     subtitle: {
       en: "Open-weights inference, deterministic verification, retrieval & agentic loops",
       fr: "Inférence locale quantifiée, vérification déterministe, RAG & boucles multi-agents",
@@ -606,7 +606,7 @@ export const STACK_CATEGORIES: SkillCategory[] = [
   {
     id: "ml-math",
     title: { en: "ML, Vision & Scientific Math", fr: "ML, Vision & Calcul Scientifique" },
-    kanji: "数",
+    code: "02",
     subtitle: {
       en: "Selective risk guarantees, differential geometry, tabular transformers & classical CV",
       fr: "Contrôle statistique du risque, géométrie différentielle, tabulaire & vision",
@@ -629,7 +629,7 @@ export const STACK_CATEGORIES: SkillCategory[] = [
   {
     id: "mobile-os",
     title: { en: "Android, Kotlin & OS Security", fr: "Android, Kotlin & Sécurité Système" },
-    kanji: "盾",
+    code: "03",
     subtitle: {
       en: "Privilege hardening, accessibility inspection, watchdogs & cross-language systems",
       fr: "Durcissement privilèges OS, accessibilité, watchdogs & programmation système",
@@ -653,7 +653,7 @@ export const STACK_CATEGORIES: SkillCategory[] = [
   {
     id: "backend-cloud",
     title: { en: "Backend, Web & Cloud Infra", fr: "Backend, Web & Cloud Infrastructure" },
-    kanji: "雲",
+    code: "04",
     subtitle: {
       en: "Production APIs, browser automation, GPU cloud provisioning & CI/CD deployment",
       fr: "APIs de production, extensions navigateur, cloud GPU & déploiement continu",

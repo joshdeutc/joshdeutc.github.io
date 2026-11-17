@@ -12,7 +12,6 @@ import {
   X,
 } from "lucide-react";
 import { useManga } from "./MangaContext";
-import { HankoStamp } from "./HankoStamp";
 import { pick, UI_COPY } from "@/lib/i18n";
 import { PROJECTS_DATA, ProjectItem } from "@/lib/portfolio-data";
 
@@ -44,7 +43,13 @@ export function useProjectsSpread() {
           </h1>
           <p className="text-[11px] text-slateink mt-1">{pick(copy.subtitle, lang)}</p>
         </div>
-        <HankoStamp kanji="挑" size="sm" />
+        <div className="w-12 h-12 border-2 border-ink bg-white overflow-hidden shadow-manga-sm shrink-0">
+          <img
+            src="/images/manga/ai-guardian.jpg"
+            alt="AI & Cybernetic Guardian Manga Art"
+            className="w-full h-full object-cover"
+          />
+        </div>
       </div>
 
       {/* Flagship Custos Panel */}

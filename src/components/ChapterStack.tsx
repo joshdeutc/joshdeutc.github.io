@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 import { useManga } from "./MangaContext";
-import { HankoStamp } from "./HankoStamp";
 import { pick, UI_COPY } from "@/lib/i18n";
 import { STACK_CATEGORIES, SkillItem } from "@/lib/portfolio-data";
 
@@ -23,7 +22,7 @@ export function useStackSpread() {
     const cat = STACK_CATEGORIES[catIdx];
     return (
       <div key={cat.id} className="manga-panel p-3 space-y-2 bg-white">
-        <div className="flex items-start justify-between gap-2 border-b-2 border-ink pb-1.5">
+        <div className="flex items-start justify-between gap-2 border-b border-ink/20 pb-1.5">
           <div>
             <h2 className="font-display font-black text-sm sm:text-base text-ink uppercase">
               {pick(cat.title, lang)}
@@ -32,7 +31,9 @@ export function useStackSpread() {
               {pick(cat.subtitle, lang)}
             </p>
           </div>
-          <HankoStamp kanji={cat.kanji} size="sm" />
+          <span className="px-1.5 py-0.5 bg-ink text-white font-mono text-[9px] font-black tracking-widest shrink-0">
+            SYS.{cat.code}
+          </span>
         </div>
 
         <div className="flex flex-wrap gap-1">
@@ -74,7 +75,9 @@ export function useStackSpread() {
           </h1>
           <p className="text-[11px] text-slateink mt-1">{pick(copy.subtitle, lang)}</p>
         </div>
-        <HankoStamp kanji="技" size="sm" />
+        <span className="px-2 py-1 border-2 border-ink bg-white font-mono text-[10px] font-black text-hanko shadow-manga-sm shrink-0">
+          CH.04
+        </span>
       </div>
 
       {renderCategory(0)}
@@ -87,13 +90,22 @@ export function useStackSpread() {
       {renderCategory(2)}
       {renderCategory(3)}
 
-      <div className="manga-bubble p-3 bg-paper">
-        <div className="font-mono text-[9px] font-black text-hanko uppercase mb-0.5">
-          {activeSkill.skill.name} — {pick(copy.deployedIn, lang)}
+      <div className="manga-bubble p-3 bg-paper flex items-center gap-3">
+        <div className="hidden sm:block w-14 h-12 border border-ink bg-white overflow-hidden shrink-0">
+          <img
+            src="/images/manga/ai-guardian.jpg"
+            alt="Arsenal Schematic"
+            className="w-full h-full object-cover"
+          />
         </div>
-        <p className="text-xs font-semibold text-ink">
-          “{pick(activeSkill.skill.usedIn, lang)}”
-        </p>
+        <div className="min-w-0">
+          <div className="font-mono text-[9px] font-black text-hanko uppercase mb-0.5">
+            {activeSkill.skill.name} — {pick(copy.deployedIn, lang)}
+          </div>
+          <p className="text-xs font-semibold text-ink">
+            “{pick(activeSkill.skill.usedIn, lang)}”
+          </p>
+        </div>
       </div>
     </div>
   );
