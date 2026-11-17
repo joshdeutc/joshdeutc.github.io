@@ -3,27 +3,38 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion } from "framer-motion";
+import { motion, useScroll, useSpring } from "framer-motion";
 import { BookOpen } from "lucide-react";
 import { ChapterId, useManga } from "./MangaContext";
 import { UI_COPY } from "@/lib/i18n";
 
 export function MangaNavbar() {
-  const { lang, toggleLang, activeChapter, navigateChapter, closeToCover } = useManga();
+  const { lang, toggleLang, activeChapter, navigateChapter, closeToCover } =
+    useManga();
   const pathname = usePathname();
   const isHome = pathname === "/";
+
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 220,
+    damping: 30,
+    restDelta: 0.001,
+  });
 
   const chapters = UI_COPY.nav.chapters;
 
   return (
-    /* Transparent floating top menu directly over the unified dark canvas — ZERO black dividing line or opaque bar */
-    <header className="relative z-40 shrink-0">
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-8">
-        <div className="h-12 sm:h-14 flex items-center justify-between gap-4">
-          {/* Minimal Typographic Identity Left (inspired by Aahana Surya floating nav) */}
+    <header className="sticky top-0 z-50 bg-[#0B0C10]/80 backdrop-blur-md">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-8">
+        <div className="h-14 flex items-center justify-between gap-4">
           <Link
             href="/"
-            onClick={() => isHome && navigateChapter("about")}
+            onClick={(e) => {
+              if (isHome) {
+                e.preventDefault();
+                navigateChapter("about");
+              }
+            }}
             className="flex items-center gap-2.5 group shrink-0"
           >
             <span className="w-2.5 h-2.5 rounded-full bg-hanko group-hover:scale-125 transition-transform" />
@@ -32,10 +43,9 @@ export function MangaNavbar() {
             </span>
           </Link>
 
-          {/* Top Navigation Links: Floating transparent links with sleek active underline */}
           {isHome ? (
             <nav
-              aria-label="Manga Chapters"
+              aria-label="Webtoon Chapters"
               className="hidden md:flex items-center gap-6 lg:gap-8"
             >
               {chapters.map((ch) => {
@@ -66,16 +76,15 @@ export function MangaNavbar() {
               className="hidden md:inline-flex items-center gap-2 font-mono text-xs font-bold tracking-widest text-white/80 hover:text-white transition-colors"
             >
               <BookOpen className="w-3.5 h-3.5 text-hanko" />
-              <span>{lang === "en" ? "← BACK TO MANGA" : "← RETOUR AU MANGA"}</span>
+              <span>{lang === "en" ? "← BACK TO WEBTOON" : "← RETOUR AU WEBTOON"}</span>
             </Link>
           )}
 
-          {/* Cover Replay + Language Switch EN | FR Right */}
           <div className="flex items-center gap-2 shrink-0">
             {isHome && (
               <button
                 onClick={closeToCover}
-                title={lang === "en" ? "Close to Volume Cover" : "Fermer vers la Couverture"}
+                title={lang === "en" ? "Open Volume 01 Cover" : "Revoir la Couverture"}
                 className="px-2.5 py-1 font-mono text-[10px] font-bold tracking-wider text-white/75 hover:text-white border border-white/20 rounded-sm hover:border-hanko transition-colors flex items-center gap-1.5"
               >
                 <BookOpen className="w-3 h-3 text-hanko" />
@@ -101,7 +110,7 @@ export function MangaNavbar() {
           </div>
         </div>
 
-        {/* Mobile Chapter Bar */}
+        {/* Mobile Chapter Anchor Bar */}
         {isHome && (
           <nav
             aria-label="Mobile Chapters"
@@ -114,9 +123,7 @@ export function MangaNavbar() {
                   key={ch.id}
                   onClick={() => navigateChapter(ch.id as ChapterId)}
                   className={`shrink-0 px-2 py-1 font-mono text-[10px] font-bold tracking-wider uppercase transition-colors ${
-                    isActive
-                      ? "text-white border-b-2 border-hanko"
-                      : "text-white/55"
+                    isActive ? "text-white border-b-2 border-hanko" : "text-white/55"
                   }`}
                 >
                   {lang === "en" ? ch.en : ch.fr}
@@ -126,6 +133,14 @@ export function MangaNavbar() {
           </nav>
         )}
       </div>
+
+      {/* Sleek Live Red Webtoon Scroll Progress Indicator */}
+      {isHome && (
+        <motion.div
+          style={{ scaleX, transformOrigin: "0% 50%" }}
+          className="h-[2px] w-full bg-hanko/90"
+        />
+      )}
     </header>
   );
 }

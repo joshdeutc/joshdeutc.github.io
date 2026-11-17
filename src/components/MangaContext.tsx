@@ -11,7 +11,6 @@ interface MangaContextType {
   toggleLang: () => void;
   activeChapter: ChapterId;
   setActiveChapter: (chapter: ChapterId) => void;
-  direction: number;
   navigateChapter: (nextChapter: ChapterId) => void;
   coverMode: "auto-opening" | "manual-closed" | "open";
   setCoverMode: (mode: "auto-opening" | "manual-closed" | "open") => void;
@@ -32,7 +31,6 @@ export function MangaProvider({ children }: { children: React.ReactNode }) {
   // Always defaults to English on initial load
   const [lang, setLang] = useState<Lang>("en");
   const [activeChapter, setActiveChapter] = useState<ChapterId>("about");
-  const [direction, setDirection] = useState<number>(1);
   const [coverMode, setCoverMode] = useState<"auto-opening" | "manual-closed" | "open">(
     "auto-opening"
   );
@@ -42,10 +40,13 @@ export function MangaProvider({ children }: { children: React.ReactNode }) {
   };
 
   const navigateChapter = (nextChapter: ChapterId) => {
-    const currIdx = CHAPTER_ORDER.indexOf(activeChapter);
-    const nextIdx = CHAPTER_ORDER.indexOf(nextChapter);
-    setDirection(nextIdx >= currIdx ? 1 : -1);
     setActiveChapter(nextChapter);
+    if (typeof document !== "undefined") {
+      const target = document.getElementById(nextChapter);
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
   };
 
   const closeToCover = () => {
@@ -60,7 +61,6 @@ export function MangaProvider({ children }: { children: React.ReactNode }) {
         toggleLang,
         activeChapter,
         setActiveChapter,
-        direction,
         navigateChapter,
         coverMode,
         setCoverMode,

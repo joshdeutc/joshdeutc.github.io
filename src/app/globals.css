@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   html,
   body {
     background-color: #0b0c10;
@@ -18,7 +22,7 @@
   }
 }
 
-/* Manga paper inside the floating open book */
+/* Crisp Manga Paper Panel in Webtoon Flow */
 .manga-sheet {
   background-color: #ffffff;
   color: #111111;
@@ -46,12 +50,17 @@
   );
 }
 
-/* Clean Manga Panels inside white book pages */
+/* Comic Case Panels with Interactive Lift */
 .manga-panel {
   border: 2px solid #111111;
   background: #ffffff;
-  box-shadow: 3px 3px 0px #111111;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 4px 4px 0px #111111;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.manga-panel-interactive:hover {
+  transform: translate(-2px, -3px);
+  box-shadow: 7px 7px 0px #d62828;
 }
 
 /* Manga Speech Bubble */
@@ -66,7 +75,7 @@
 .manga-bubble-left::after {
   content: "";
   position: absolute;
-  top: 20px;
+  top: 22px;
   left: -13px;
   border-width: 7px 13px 7px 0;
   border-style: solid;
@@ -76,7 +85,7 @@
 .manga-bubble-left::before {
   content: "";
   position: absolute;
-  top: 22px;
+  top: 24px;
   left: -9px;
   border-width: 5px 10px 5px 0;
   border-style: solid;
@@ -84,39 +93,7 @@
   z-index: 1;
 }
 
-/* Realistic center book spine gutter */
-.book-gutter-left {
-  background: linear-gradient(
-    to left,
-    rgba(0, 0, 0, 0.22) 0%,
-    rgba(0, 0, 0, 0.08) 12px,
-    rgba(0, 0, 0, 0.02) 34px,
-    transparent 64px
-  );
-}
-
-.book-gutter-right {
-  background: linear-gradient(
-    to right,
-    rgba(0, 0, 0, 0.22) 0%,
-    rgba(0, 0, 0, 0.08) 12px,
-    rgba(0, 0, 0, 0.02) 34px,
-    transparent 64px
-  );
-}
-
-/* Stacked fore-edge paper striations for physical book depth */
-.book-pages-edge-left {
-  background: repeating-linear-gradient(
-    to right,
-    #d1d5db 0px,
-    #d1d5db 1.5px,
-    #f9fafb 1.5px,
-    #f9fafb 3px
-  );
-  border-right: 1px solid rgba(17, 17, 17, 0.2);
-}
-
+/* Stacked fore-edge paper striations for physical manga cover intro */
 .book-pages-edge-right {
   background: repeating-linear-gradient(
     to left,
@@ -128,7 +105,6 @@
   border-left: 1px solid rgba(17, 17, 17, 0.2);
 }
 
-/* 3D Transform helpers */
 .preserve-3d {
   transform-style: preserve-3d;
 }
@@ -136,15 +112,6 @@
 .backface-hidden {
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-}
-
-/* Hide scrollbars cleanly while keeping scroll fallback on tiny screens */
-.manga-scroll {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-.manga-scroll::-webkit-scrollbar {
-  display: none;
 }
 
 /* Washi masking tape for real photo pinned onto manga sheet */

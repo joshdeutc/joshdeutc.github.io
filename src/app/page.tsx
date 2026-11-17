@@ -1,167 +1,111 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { MangaLoader } from "@/components/MangaLoader";
 import { MangaCanvasBg } from "@/components/MangaCanvasBg";
+import { MangaLoader } from "@/components/MangaLoader";
 import { MangaNavbar } from "@/components/MangaNavbar";
 import { MangaFooter } from "@/components/MangaFooter";
-import { OpenMangaBook } from "@/components/OpenMangaBook";
-import { useAboutSpread } from "@/components/ChapterAbout";
-import { useProjectsSpread } from "@/components/ChapterProjects";
-import { useExperienceSpread } from "@/components/ChapterExperience";
-import { useStackSpread } from "@/components/ChapterStack";
-import { useContactSpread } from "@/components/ChapterContact";
-import { CHAPTER_ORDER, useManga } from "@/components/MangaContext";
+import { WebtoonHeroAbout } from "@/components/WebtoonHeroAbout";
+import { WebtoonProjects } from "@/components/WebtoonProjects";
+import { WebtoonExperience } from "@/components/WebtoonExperience";
+import { WebtoonStack } from "@/components/WebtoonStack";
+import { WebtoonContact } from "@/components/WebtoonContact";
+import { CHAPTER_ORDER, ChapterId, useManga } from "@/components/MangaContext";
 
 export default function HomePage() {
-  const { activeChapter, direction, navigateChapter, lang } = useManga();
+  const { setActiveChapter } = useManga();
 
-  const about = useAboutSpread();
-  const projects = useProjectsSpread();
-  const experience = useExperienceSpread();
-  const stack = useStackSpread();
-  const contact = useContactSpread();
-
-  const currentIdx = CHAPTER_ORDER.indexOf(activeChapter);
-  const prevChapter = currentIdx > 0 ? CHAPTER_ORDER[currentIdx - 1] : null;
-  const nextChapter =
-    currentIdx < CHAPTER_ORDER.length - 1 ? CHAPTER_ORDER[currentIdx + 1] : null;
-
-  const handlePrev = () => {
-    if (activeChapter === "experience" && experience.spreadIdx === 1) {
-      experience.setSpreadIdx(0);
-      return;
-    }
-    if (prevChapter) {
-      navigateChapter(prevChapter);
-    }
-  };
-
-  const handleNext = () => {
-    if (activeChapter === "experience" && experience.spreadIdx === 0) {
-      experience.setSpreadIdx(1);
-      return;
-    }
-    if (nextChapter) {
-      navigateChapter(nextChapter);
-    }
-  };
-
+  // Live Scroll-Spy updating active chapter tab in top navbar while reading top-to-bottom
   useEffect(() => {
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (
-        e.target instanceof HTMLInputElement ||
-        e.target instanceof HTMLTextAreaElement ||
-        e.target instanceof HTMLSelectElement
-      ) {
-        return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+        if (visible.length > 0) {
+          const id = visible[0].target.id as ChapterId;
+          if (CHAPTER_ORDER.includes(id)) {
+            setActiveChapter(id);
+          }
+        }
+      },
+      {
+        rootMargin: "-25% 0px -45% 0px",
+        threshold: [0.1, 0.35, 0.6],
       }
-      if (e.key === "ArrowRight") handleNext();
-      else if (e.key === "ArrowLeft") handlePrev();
-    };
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  });
+    );
 
-  const spreadConfig = {
-    about: {
-      bookKey: "about",
-      leftTitle: "CH.01 // THE PROTAGONIST",
-      rightTitle: "EDUCATION & OFF-SCREEN",
-      leftPageNum: "P.02",
-      rightPageNum: "P.03",
-      leftPage: about.leftPage,
-      rightPage: about.rightPage,
-      prevLabel: undefined,
-      nextLabel: lang === "en" ? "CH.02: PROJECTS" : "CH.02 : PROJETS",
-    },
-    projects: {
-      bookKey: "projects",
-      leftTitle: "CH.02 // QUEST ARCHIVE",
-      rightTitle: "INSPECTED QUEST",
-      leftPageNum: "P.04",
-      rightPageNum: "P.05",
-      leftPage: projects.leftPage,
-      rightPage: projects.rightPage,
-      prevLabel: lang === "en" ? "CH.01: ABOUT" : "CH.01 : À PROPOS",
-      nextLabel: lang === "en" ? "CH.03: EXPERIENCE" : "CH.03 : EXPÉRIENCE",
-    },
-    experience: {
-      bookKey: `experience-${experience.spreadIdx}`,
-      leftTitle: "CH.03 // CHRONOLOGICAL ARC",
-      rightTitle:
-        experience.spreadIdx === 0
-          ? "EPICONCEPT R&D (TN10)"
-          : "COMPLÉTUDE TUTORING",
-      leftPageNum: experience.spreadIdx === 0 ? "P.06" : "P.08",
-      rightPageNum: experience.spreadIdx === 0 ? "P.07" : "P.09",
-      leftPage: experience.leftPage,
-      rightPage: experience.rightPage,
-      prevLabel:
-        experience.spreadIdx === 1
-          ? lang === "en"
-            ? "SPREAD 1/2"
-            : "PAGE 1/2"
-          : lang === "en"
-          ? "CH.02: PROJECTS"
-          : "CH.02 : PROJETS",
-      nextLabel:
-        experience.spreadIdx === 0
-          ? lang === "en"
-            ? "SPREAD 2/2 (2022–2025)"
-            : "PAGE 2/2 (2022–2025)"
-          : lang === "en"
-          ? "CH.04: STACK"
-          : "CH.04 : STACK",
-    },
-    stack: {
-      bookKey: "stack",
-      leftTitle: "CH.04 // AI & SCIENTIFIC ARSENAL",
-      rightTitle: "MOBILE OS & CLOUD INFRA",
-      leftPageNum: "P.10",
-      rightPageNum: "P.11",
-      leftPage: stack.leftPage,
-      rightPage: stack.rightPage,
-      prevLabel: lang === "en" ? "CH.03: EXPERIENCE" : "CH.03 : EXPÉRIENCE",
-      nextLabel: lang === "en" ? "CH.05: CONTACT" : "CH.05 : CONTACT",
-    },
-    contact: {
-      bookKey: "contact",
-      leftTitle: "CH.05 // MALT & DIRECT LINKS",
-      rightTitle: "CONTRACT & MESSAGE PANEL",
-      leftPageNum: "P.12",
-      rightPageNum: "P.13",
-      leftPage: contact.leftPage,
-      rightPage: contact.rightPage,
-      prevLabel: lang === "en" ? "CH.04: STACK" : "CH.04 : STACK",
-      nextLabel: undefined,
-    },
-  }[activeChapter];
+    CHAPTER_ORDER.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
 
-  const hasPrev = Boolean(prevChapter) || (activeChapter === "experience" && experience.spreadIdx === 1);
-  const hasNext = Boolean(nextChapter) || (activeChapter === "experience" && experience.spreadIdx === 0);
+    return () => observer.disconnect();
+  }, [setActiveChapter]);
 
   return (
-    <div className="min-h-screen lg:h-dvh lg:overflow-hidden flex flex-col bg-[#0B0C10] text-white relative">
+    <div className="min-h-screen flex flex-col bg-[#0B0C10] text-white relative">
       <MangaCanvasBg />
       <MangaLoader />
       <MangaNavbar />
 
-      <main className="relative z-10 flex-1 lg:min-h-0 lg:overflow-hidden flex flex-col justify-center">
-        <OpenMangaBook
-          bookKey={spreadConfig.bookKey}
-          direction={direction}
-          leftTitle={spreadConfig.leftTitle}
-          rightTitle={spreadConfig.rightTitle}
-          leftPageNum={spreadConfig.leftPageNum}
-          rightPageNum={spreadConfig.rightPageNum}
-          leftPage={spreadConfig.leftPage}
-          rightPage={spreadConfig.rightPage}
-          onPrev={hasPrev ? handlePrev : undefined}
-          onNext={hasNext ? handleNext : undefined}
-          prevLabel={spreadConfig.prevLabel}
-          nextLabel={spreadConfig.nextLabel}
-        />
+      {/* Centered Vertical Webtoon Reading Strip over Continuous Interactive Dark Canvas */}
+      <main className="relative z-10 flex-1 w-full max-w-[980px] mx-auto px-4 sm:px-6 pt-6 sm:pt-10 pb-16">
+        <WebtoonHeroAbout />
+
+        {/* Vertical Webtoon Ink Gutter Divider */}
+        <div
+          className="my-12 sm:my-16 flex flex-col items-center gap-2 pointer-events-none select-none"
+          aria-hidden="true"
+        >
+          <span className="w-px h-10 bg-gradient-to-b from-transparent via-hanko/70 to-hanko" />
+          <span className="font-mono text-[9px] font-bold tracking-[0.3em] text-white/35">
+            ///
+          </span>
+          <span className="w-px h-10 bg-gradient-to-b from-hanko via-white/20 to-transparent" />
+        </div>
+
+        <WebtoonProjects />
+
+        <div
+          className="my-12 sm:my-16 flex flex-col items-center gap-2 pointer-events-none select-none"
+          aria-hidden="true"
+        >
+          <span className="w-px h-10 bg-gradient-to-b from-transparent via-hanko/70 to-hanko" />
+          <span className="font-mono text-[9px] font-bold tracking-[0.3em] text-white/35">
+            ///
+          </span>
+          <span className="w-px h-10 bg-gradient-to-b from-hanko via-white/20 to-transparent" />
+        </div>
+
+        <WebtoonExperience />
+
+        <div
+          className="my-12 sm:my-16 flex flex-col items-center gap-2 pointer-events-none select-none"
+          aria-hidden="true"
+        >
+          <span className="w-px h-10 bg-gradient-to-b from-transparent via-hanko/70 to-hanko" />
+          <span className="font-mono text-[9px] font-bold tracking-[0.3em] text-white/35">
+            ///
+          </span>
+          <span className="w-px h-10 bg-gradient-to-b from-hanko via-white/20 to-transparent" />
+        </div>
+
+        <WebtoonStack />
+
+        <div
+          className="my-12 sm:my-16 flex flex-col items-center gap-2 pointer-events-none select-none"
+          aria-hidden="true"
+        >
+          <span className="w-px h-10 bg-gradient-to-b from-transparent via-hanko/70 to-hanko" />
+          <span className="font-mono text-[9px] font-bold tracking-[0.3em] text-white/35">
+            FIN
+          </span>
+          <span className="w-px h-10 bg-gradient-to-b from-hanko via-white/20 to-transparent" />
+        </div>
+
+        <WebtoonContact />
       </main>
 
       <MangaFooter />
